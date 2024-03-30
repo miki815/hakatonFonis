@@ -26,6 +26,12 @@ let Question = new Schema({
     },
     correctAnswer: {
         type: Number
+    },
+    city: {
+        type: String
+    },
+    type: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('Question', Question, 'questions');

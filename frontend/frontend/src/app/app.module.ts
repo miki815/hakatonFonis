@@ -8,13 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GameComponent } from './game/game.component';
 import { RegisterComponent } from './register/register.component';
+import { KvizHomepageComponent } from './kviz-homepage/kviz-homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     GameComponent,
-    RegisterComponent
+    RegisterComponent,
+    KvizHomepageComponent,
   ],
   imports: [
     BrowserModule,

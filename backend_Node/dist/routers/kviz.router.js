@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const kviz_controller_1 = require("../controllers/kviz.controller");
 const kvizRouter = express_1.default.Router();
-kvizRouter.route('/getQuestion').get((req, res) => new kviz_controller_1.KvizController().getQuestion(req, res));
+kvizRouter.route('/getQuestion').post((req, res) => new kviz_controller_1.KvizController().getQuestion(req, res));
 kvizRouter.route('/getQuestionById').post((req, res) => new kviz_controller_1.KvizController().getQuestionById(req, res));
 exports.default = kvizRouter;

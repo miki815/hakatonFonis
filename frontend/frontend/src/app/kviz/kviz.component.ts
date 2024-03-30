@@ -10,90 +10,108 @@ import { Question } from '../models/Question';
 })
 export class KvizComponent {
 
-  constructor(private kvizService: KvizService){}
+  constructor(private kvizService: KvizService) { }
 
   timer: number = 10;
   timerSubscription: Subscription;
   question: Question;
+  questions: Question[];
   btnDisabled: boolean = false;
   positionTrue: number = -1;
   btnClass: Array<string> = new Array(4);
   isPreparing: boolean = false;
   questionCnt: number = 1;
   correctCnt: number = 0;
-  message: string = "Pokaži znanje i odgovori tačno na što više pitanja!";
+  message: string = "Find out how well you know the city you're traveling to!";
+  city: string = "Belgrade";
 
   ngOnInit() {
-    this.getQuestion();
-    this.startTimer();
+    let qtype = sessionStorage.getItem("question_type");
+    this.getAllQuestions(qtype);
   }
 
-  getQuestion(){
-    this.kvizService.getQuestion().subscribe((quest: Question)=>{
-        if(quest) {
-          this.question = quest;
-          this.trueAnswerPosition();
-        }
-        else alert("Greska");
+  getAllQuestions(qtype: string) {
+    console.log("TEST")
+    this.kvizService.getQuestion(qtype).subscribe((quest: Question[]) => {
+      if (quest) {
+        console.log(quest)
+        this.questions = quest;
+        this.startTimer();
+        this.getQuestion();
+      }
+      else alert("Greska");
     })
   }
+
+  getQuestion() {
+    let index = this.generateRandomIndex(this.questions);
+    this.question = this.questions[index];
+    this.questions.splice(index, 1);
+    this.trueAnswerPosition();
+  }
+
+  generateRandomIndex(questions: Question[]): number {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    return randomIndex;
+  }
+
 
   startTimer() {
     const source = interval(1000);
     this.timerSubscription = source.subscribe(() => {
       this.timer--;
       if (this.timer === 0) {
-        if(this.isPreparing == true) this.getNewQuestion();
+        if (this.isPreparing == true) this.getNewQuestion();
         else this.answerQuestion(0);
       }
     });
   }
 
-  answerQuestion(answerId){
+  answerQuestion(answerId) {
     this.btnClass[this.positionTrue - 1] = "true-answer";
     this.btnDisabled = true;
-    if(answerId == this.positionTrue) {
+    if (answerId == this.positionTrue) {
       this.correctCnt++;
     }
-    else if(answerId != 0){
+    else if (answerId != 0) {
       this.btnClass[answerId - 1] = "wrong-answer";
     }
-    if(this.questionCnt++ == 5){
+    if (this.questionCnt++ == 5) {
       this.message = "Igra je završena! Tačnih odgovora: " + this.correctCnt.toString();
       this.timer = 0;
       this.timerSubscription.unsubscribe();
     }
-    else{
+    else {
       this.timer = 3;
       this.isPreparing = true;
     }
   }
 
-  trueAnswerPosition(){
+  trueAnswerPosition() {
     let pos = Math.floor(Math.random() * 3 + 1);
     let tmp = this.question.answer1;
     this.positionTrue = pos;
-    if(pos == 1) return;
-    else if(pos == 2) {
+    if (pos == 1) return;
+    else if (pos == 2) {
       this.question.answer1 = this.question.answer2;
       this.question.answer2 = tmp;
     }
-    else if(pos == 3){
+    else if (pos == 3) {
       this.question.answer1 = this.question.answer3;
       this.question.answer3 = tmp;
     }
-    else{
+    else {
       this.question.answer1 = this.question.answer4;
       this.question.answer4 = tmp;
     }
   }
 
-  getNewQuestion(){
+  getNewQuestion() {
     this.getQuestion();
     this.isPreparing = false;
     this.timer = 10;
     this.btnDisabled = false;
-    for(let i = 0;i < 4;i++) this.btnClass[i] = '';
+    for (let i = 0; i < 4; i++) this.btnClass[i] = '';
   }
 
 }

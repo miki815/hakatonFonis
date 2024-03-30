@@ -8,7 +8,6 @@ const Game_words_1 = __importDefault(require("../models/Game_words"));
 class GameController {
     constructor() {
         this.getWord = (req, res) => {
-            console.log("test");
             let id = Math.floor(Math.random() * 20) + 1;
             Game_words_1.default.findOne({ 'id': id }).then((word) => {
                 res.json(word);

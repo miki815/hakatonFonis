@@ -23,6 +23,12 @@ let Question = new Schema({
     },
     correctAnswer: {
         type: Number
+    },
+    city: {
+        type: String
+    },
+    type: {
+        type: String
     }
 })
 

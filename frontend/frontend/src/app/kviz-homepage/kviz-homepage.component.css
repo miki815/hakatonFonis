@@ -1,0 +1,28 @@
+/* button-page.component.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Postavljanje visine na visinu prozora */
+}
+
+.big-button {
+    padding: 40px 100px;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid #5249b3;
+    background-color: #3c1fa8;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    height: 200px;
+    width: 350px;
+}
+
+.big-button:hover {
+    background-color: white;
+    color: black;
+}
