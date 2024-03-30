@@ -29,7 +29,8 @@ export class KvizComponent {
   user: User;
 
   ngOnInit() {
-    this.user = JSON.parse(sessionStorage.getItem("token"));
+    this.user = JSON.parse(localStorage.getItem("token"));
+    console.log(this.user);
     let qtype = sessionStorage.getItem("question_type");
     this.getAllQuestions(qtype);
   }
@@ -85,8 +86,12 @@ export class KvizComponent {
     if (this.questionCnt++ == 4) {
       this.message = "Igra je završena! Tačnih odgovora: " + this.correctCnt.toString();
       this.timer = 0;
-      this.timerSubscription.unsubscribe();
-      this.kvizService.saveScore(this.user.username, this.points);
+      this.kvizService.saveScore2(this.user.username, this.points).subscribe((res) => {
+        if (res) {
+          console.log('Score saved')
+          this.timerSubscription.unsubscribe();
+        }
+      });
     }
     else {
       this.timer = 3;

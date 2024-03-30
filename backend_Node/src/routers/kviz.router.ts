@@ -12,7 +12,11 @@ kvizRouter.route('/getQuestionById').post(
 )
 
 kvizRouter.route('/saveScore').post(
-    (req, res) => new KvizController().getQuestionById(req, res)
+    (req, res) => new KvizController().saveScore(req, res)
+)
+
+kvizRouter.route('/saveScore2').post(
+    (req, res) => new KvizController().saveScore(req, res)
 )
 
 export default kvizRouter;

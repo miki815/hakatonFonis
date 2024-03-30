@@ -21,29 +21,28 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private router: Router){}
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
 
   }
-  register(){
+  register() {
     this.router.navigate(['/register']);
   }
-  login(){
-    if(!this.password ||  !this.username){
-      this.message="Input all fields."
+  login() {
+    if (!this.password || !this.username) {
+      this.message = "Input all fields."
     } else {
-      this.userService.login(this.username, this.password).subscribe((user: any)=>{
-        if(user){
-          const tokenPayload = { user: user }
-          const token = btoa(JSON.stringify(tokenPayload)); 
-          localStorage.setItem('token', token);
+      this.userService.login(this.username, this.password).subscribe((user: User) => {
+        if (user) {
+          //  const tokenPayload = { user: user }
+          localStorage.setItem('token', JSON.stringify(user));
           this.router.navigate(["/homepage"]);
         } else {
-          this.message="Parameters are not valid."
+          this.message = "Parameters are not valid."
         }
-      } ); 
+      });
     }
   }
-  
+
 }

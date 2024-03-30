@@ -16,6 +16,14 @@ export class KvizService {
     return this.http.post('http://localhost:4000/kviz/getQuestion', data);
   }
 
+  saveScore2(username, score) {
+    let data = {
+      username: username,
+      points: score
+    }
+    return this.http.post('http://localhost:4000/kviz/saveScore2', data);
+  }
+
   getQuestionById(id) {
     return this.http.post('http://localhost:4000/kviz/getQuestionById', { id: id });
   }
@@ -23,8 +31,10 @@ export class KvizService {
   saveScore(username, score) {
     let data = {
       username: username,
-      score: score
+      points: score
     }
     return this.http.post('http://localhost:4000/kviz/saveScore', data);
   }
+
+ 
 }

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KvizController = void 0;
 const Question_1 = __importDefault(require("../models/Question"));
+const user_1 = __importDefault(require("../models/user"));
 class KvizController {
     constructor() {
         this.getQuestion = (req, res) => {
@@ -27,6 +28,18 @@ class KvizController {
                     console.log(err);
                 else
                     res.json(question);
+            });
+        };
+        this.saveScore = (req, res) => {
+            console.log("saving score");
+            let username = req.body.username;
+            let points = req.body.points;
+            user_1.default.findOneAndUpdate({ 'username': username }, { $inc: { points: points } })
+                .then((user) => {
+                res.json({ 'message': 'ok' });
+            }).catch((err) => {
+                console.log(err);
+                res.json({ 'message': 'err' });
             });
         };
     }
