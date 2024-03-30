@@ -97,17 +97,34 @@
     background-color: #135392;
 }
 
-.timer {
-    font-size: 24px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin: 0 auto;
-    text-align: center;
-    width: 30px;
-    background-color: #777;
-    color: white;
-    border: 1px solid black;
+.timpoints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
+
+.timer,
+.points {
+    margin-right: 20px;
+    font-size: 24px;
+    color: black;
+    width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+.timer {
+    background-color: #777;
+}
+
+.points {
+    background-color: #3c1fa8;
+    color: white;
+}
+
+
+
 
 #true-answer {
     background-color: rgb(77, 240, 44);
@@ -142,4 +159,9 @@
 
 span {
     font-size: 20px;
+}
+
+.question-text {
+    text-align: center;
+
 }
