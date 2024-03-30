@@ -15,8 +15,7 @@ import { KvizHomepageComponent } from './kviz-homepage/kviz-homepage.component';
     AppComponent,
     LoginComponent,
     GameComponent,
-    RegisterComponent
-    LoginComponent,
+    RegisterComponent,
     KvizHomepageComponent,
   ],
   imports: [
