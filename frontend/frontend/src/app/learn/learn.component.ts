@@ -15,7 +15,7 @@ export class LearnComponent {
     this.router.navigate(['../game']);
   }
   kviz() {
-    this.router.navigate(['../kviz']);
+    this.router.navigate(['../quiz']);
   }
 
 }
