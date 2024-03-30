@@ -1,5 +1,6 @@
 import * as express from 'express';
 import Question from '../models/Question';
+import User from '../models/user';
 
 
 export class KvizController {
@@ -22,6 +23,19 @@ export class KvizController {
         Question.findOne({ 'id': id }, (err, question) => {
             if (err) console.log(err);
             else res.json(question);
+        })
+    }
+
+    saveScore = (req: express.Request, res: express.Response) => {
+        console.log("saving score")
+        let username = req.body.username;
+        let points = req.body.points;
+        User.findOneAndUpdate({ 'username': username },  { $inc: { points: points } } )
+            .then((user) => {
+            res.json({'message': 'ok'})
+            }).catch((err) => {
+            console.log(err);
+            res.json({'message': 'err'})
         })
     }
 

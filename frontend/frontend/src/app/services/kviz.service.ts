@@ -19,4 +19,12 @@ export class KvizService {
   getQuestionById(id) {
     return this.http.post('http://localhost:4000/kviz/getQuestionById', { id: id });
   }
+
+  saveScore(username, score) {
+    let data = {
+      username: username,
+      score: score
+    }
+    return this.http.post('http://localhost:4000/kviz/saveScore', data);
+  }
 }

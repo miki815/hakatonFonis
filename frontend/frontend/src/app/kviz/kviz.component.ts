@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KvizService } from '../services/kviz.service';
 import { Subscription, interval } from 'rxjs';
 import { Question } from '../models/Question';
+import { User } from '../models/users';
 
 @Component({
   selector: 'app-kviz',
@@ -20,12 +21,15 @@ export class KvizComponent {
   positionTrue: number = -1;
   btnClass: Array<string> = new Array(4);
   isPreparing: boolean = false;
-  questionCnt: number = 1;
+  questionCnt: number = 0;
   correctCnt: number = 0;
   message: string = "Find out how well you know the city you're traveling to!";
   city: string = "Belgrade";
+  points: number = 0;
+  user: User;
 
   ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem("token"));
     let qtype = sessionStorage.getItem("question_type");
     this.getAllQuestions(qtype);
   }
@@ -72,14 +76,17 @@ export class KvizComponent {
     this.btnDisabled = true;
     if (answerId == this.positionTrue) {
       this.correctCnt++;
+      this.points += 3;
     }
     else if (answerId != 0) {
       this.btnClass[answerId - 1] = "wrong-answer";
+      this.points -= 1;
     }
-    if (this.questionCnt++ == 5) {
+    if (this.questionCnt++ == 4) {
       this.message = "Igra je završena! Tačnih odgovora: " + this.correctCnt.toString();
       this.timer = 0;
       this.timerSubscription.unsubscribe();
+      this.kvizService.saveScore(this.user.username, this.points);
     }
     else {
       this.timer = 3;

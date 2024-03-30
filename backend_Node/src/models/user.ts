@@ -33,10 +33,7 @@ let User= new Schema({
     visitedCountries: {
         type: String
     },
-    pointsQuiz:{
-        type: Number
-    },
-    pointsGame:{
+    points:{
         type: Number
     },
     age:{
