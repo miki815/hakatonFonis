@@ -1,31 +1,30 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../models/users';
 
 @Component({
-  selector: 'app-learn',
+  selector: 'app-profile',
   standalone: true,
   imports: [],
-  templateUrl: './learn.component.html',
-  styleUrls: ['./learn.component.css']
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class LearnComponent {
+export class ProfileComponent {
   constructor(private router: Router) { }
+  user: User;
+
 
   ngOnInit(){
     var token = localStorage.getItem("token");
     if(token == "null"){
-      this.router.navigate(["login"]);    }
+      this.router.navigate(["login"]);   
+    } else {
+      this.user = JSON.parse(token);
+    }
   }
 
-  game() {
-    this.router.navigate(['../game']);
-  }
-  kviz() {
-    this.router.navigate(['../quiz']);
-  }
 
   logout(){
     localStorage.setItem("token", null);
   }
-
 }
