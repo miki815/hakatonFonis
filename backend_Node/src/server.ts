@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import kvizRouter from './routers/kviz.router';
 
 
 
@@ -18,7 +19,10 @@ connection.once('open', ()=>{
     console.log('db connection ok')
 })
 
-const router=express.Router();
+const router = express.Router();
+router.use('/kviz', kvizRouter);
+
+
 app.use('/', router)
 
 app.listen(4000, () => console.log(`Express server running on port 4000`));

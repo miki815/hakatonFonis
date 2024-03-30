@@ -1,14 +1,14 @@
 import express from 'express';
 import { KvizController } from '../controllers/kviz.controller';
 
-const gameRouter = express.Router();
+const kvizRouter = express.Router();
 
-gameRouter.route('/getQuestion').get(
+kvizRouter.route('/getQuestion').post(
     (req, res)=>new KvizController().getQuestion(req, res)
 )
 
-gameRouter.route('/getQuestionById').post(
+kvizRouter.route('/getQuestionById').post(
     (req, res)=>new KvizController().getQuestionById(req, res)
 )
 
-export default gameRouter;
+export default kvizRouter;

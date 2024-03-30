@@ -8,12 +8,15 @@ const Question_1 = __importDefault(require("../models/Question"));
 class KvizController {
     constructor() {
         this.getQuestion = (req, res) => {
-            let id = Math.floor(Math.random() * 4) + 1;
-            Question_1.default.findOne({ 'id': id }, (err, question) => {
-                if (err)
-                    console.log(err);
-                else
-                    res.json(question);
+            let city = req.body.city;
+            let qtype = req.body.qtype;
+            console.log(city);
+            // let id = Math.floor(Math.random() * 4) + 1;
+            Question_1.default.find({ 'city': city, 'type': qtype }).then((questions) => {
+                console.log(questions);
+                res.json(questions);
+            }).catch((err) => {
+                console.log(err);
             });
         };
         this.getQuestionById = (req, res) => {
