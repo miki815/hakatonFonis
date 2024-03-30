@@ -3,6 +3,8 @@ import { GameService } from '../services/game.service';
 import { Game_words } from '../models/Game_words';
 import { Subscription, interval } from 'rxjs';
 import { Router } from '@angular/router';
+import { KvizService } from '../services/kviz.service';
+import { User } from '../models/users';
 
 interface Answer {
   text: string;
@@ -16,7 +18,7 @@ interface Answer {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit, OnDestroy {
-  constructor(private gameService: GameService, private router: Router) {}
+  constructor(private gameService: GameService, private router: Router, private kvizService: KvizService) {}
 
   game_word: Game_words;
   playercolor: string = "blueplayercolor";
@@ -38,8 +40,9 @@ export class GameComponent implements OnInit, OnDestroy {
   counter: number=0;
 
   hit : [];
-
+  user: User;
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("token"));
     this.bringWords();
     this.startTimer();
   }
@@ -114,6 +117,12 @@ export class GameComponent implements OnInit, OnDestroy {
   }
   endGame() {
     this.gameOver = true;
+    this.kvizService.saveScore2(this.user.username, this.score).subscribe((res) => {
+      if (res) {
+        console.log('Score saved')
+        this.timerSubscription.unsubscribe();
+      }
+    });
     /*this.gameService.saveScore(this.username, this.score).subscribe(()=>{
   
     } ); */
@@ -144,7 +153,7 @@ export class GameComponent implements OnInit, OnDestroy {
           if (answer.position >= 9 && answer.position < 9.1 && index === this.player) {
             if (answer.isRight) {
               this.score++;
-              this.hit.push() // *
+              /*this.hit.push() // */
               this.playercolor = "greenplayercolor";
               this.bringWords();
             } else {
