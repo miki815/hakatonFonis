@@ -5,6 +5,7 @@ import { KvizComponent } from './kviz/kviz.component';
 import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LearnComponent } from './learn/learn.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   {path: 'homepage', component: HomepageComponent},
   {path: "kviz", component: KvizComponent },
-  {path: 'learn', component: LearnComponent}
+  {path: 'learn', component: LearnComponent},
+  {path: 'register', component: RegisterComponent}
+
 ];
 
 @NgModule({
