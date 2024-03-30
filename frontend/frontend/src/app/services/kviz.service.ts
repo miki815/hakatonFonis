@@ -6,13 +6,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class KvizService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getQuestion(){
-    return this.http.get('http://localhost:4000/game/getQuestion');
+  getQuestion(qtype: string) {
+    let data = {
+      city: "Belgrade",
+      qtype: qtype
+    }
+    return this.http.post('http://localhost:4000/kviz/getQuestion', data);
   }
 
-  getQuestionById(id){
-    return this.http.post('http://localhost:4000/game/getQuestionById' , {id: id});
+  getQuestionById(id) {
+    return this.http.post('http://localhost:4000/kviz/getQuestionById', { id: id });
   }
 }

@@ -16,7 +16,7 @@
   "right": "Cafe",
   "wrong": "Library"
 },
-{ 
+{
   "_id": {
     "$oid": "660828bee180173d99035bf6"
   },

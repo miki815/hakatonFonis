@@ -4,10 +4,15 @@ import Question from '../models/Question';
 
 export class KvizController {
     getQuestion = (req: express.Request, res: express.Response) => {
-        let id = Math.floor(Math.random() * 4) + 1;
-        Question.findOne({ 'id': id }, (err, question) => {
-            if (err) console.log(err);
-            else res.json(question);
+        let city = req.body.city;
+        let qtype = req.body.qtype;
+        console.log(city);
+        // let id = Math.floor(Math.random() * 4) + 1;
+        Question.find({ 'city': city, 'type': qtype }).then((questions) => {
+            console.log(questions);
+            res.json(questions);
+        }).catch((err) => {
+            console.log(err);
         })
     }
 
