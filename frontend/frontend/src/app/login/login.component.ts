@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           const tokenPayload = { user: user }
           const token = btoa(JSON.stringify(tokenPayload)); 
           localStorage.setItem('token', token);
-          this.router.navigate(["www.google.com"]);
+          this.router.navigate(["/homepage"]);
         } else {
           this.message="Parameters are not valid."
         }

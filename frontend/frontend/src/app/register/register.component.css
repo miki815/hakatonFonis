@@ -6,8 +6,8 @@ body {
 }
 
 .header {
-    background-color: #ffb669;
-    color: #fff;
+    background-color: hsl(31, 100%, 71%);
+    color: #D3AC2B;
     text-align: center;
     padding: 20px 0;
 }
@@ -44,12 +44,16 @@ body {
     border-radius: 4px;
 }*/
 
-.registration-container input {
+.registration-container input, .selectt {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.selectt{
+    text-align: center;
 }
 
 .registration-container input[type="submit"] {
@@ -86,8 +90,8 @@ body {
 
 .button {
     border: none;
-    background-color: #6bcb69; 
-    color: #fff; 
+    background-color: lightblue; 
+    color: #433E49 ; 
     padding: 10px 20px; 
     border-radius: 20px; 
     cursor: pointer;
@@ -95,20 +99,24 @@ body {
 }
 
 .button:hover {
-    background-color: #a7f9a3;
+    background-color: #433E49;
+    color: lightblue;
 }
 
 a:hover{
-    color: #a7f9a3; 
+    color: lightblue;
 }
 
 a{
-    color: #6bcb69;
+    color: #433E49;
 }
 
 select{
     margin-left: 20px;
     padding-left: 10px;
-    background-color: #cefdcb;
+    background-color: white;
   }
   
+  option:checked {
+    background-color: lightblue; /* Promenite boju kako želite */
+  }

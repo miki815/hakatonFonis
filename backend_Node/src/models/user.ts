@@ -22,16 +22,16 @@ let User= new Schema({
         type: String
     },
     city:{
-        type: Array
+        type: String
     },
     rate: {
-        type: String
+        type: Number
     },
     visitedCities: {
-        type: String
+        type: Array
     },
     visitedCountries: {
-        type: String
+        type: Array
     },
     pointsQuiz:{
         type: Number
