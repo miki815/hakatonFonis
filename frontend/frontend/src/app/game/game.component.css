@@ -1,0 +1,66 @@
+.game {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
+  }
+  
+  .score {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .lanes {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+  }
+  
+  .lane {
+    flex: 1;
+    border-right: 1px solid rgb(110, 33, 173);
+    position: relative;
+  }
+  
+  .answer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    background-color: lightblue;
+  }
+  
+
+  .player{
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(65, 35, 150);
+  }
+
+  #blueplayercolor{
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(65, 35, 150);
+  }
+  #greenplayercolor{
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(62, 201, 43);
+  }
+
+    
+  #redplayercolor{
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(170, 28, 28);
+  }
