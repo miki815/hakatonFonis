@@ -10,8 +10,7 @@ import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    LoginComponent,
     AppComponent,
     GameComponent
   ],

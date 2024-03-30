@@ -1,12 +1,23 @@
-<div class="game">
+<div class="background">
+    <img src="assets/background.png" alt="Background">
+  </div>
+  <div class="game" *ngIf="!gameOver">
+    <div class="timer">{{timer}}</div>
     <div class="score">Score: {{ score }}</div>
-    <div class="Word?">Word?: {{ score }}</div>
+    <div class="Word">{{ game_word.question_word }}</div>
     <div class="lanes">
       <div class="lane" *ngFor="let lane of lanes; let i = index">
-        <div class="answer" *ngFor="let answer of lane.answers" [style.top.px]="answer.position * 50">
+        <div class="answer" *ngFor="let answer of lane.answers" [style.top.px]="answer.position * 80">
           {{ answer.text }}
         </div>
       </div>
     </div>
-    <div class="player" [id]="playercolor" [style.left.%]="player * 50"></div>
+    <img class="player" [id]="playercolor" [src]="'assets/traveller.png'" [style.left.%]="13 + player * 50">
+  </div>
+  <div class="game-over" *ngIf="gameOver">
+    <div class="final-score">Score: {{ score }}</div>
+    <div class="buttons">
+        <button (click)="goToHomepage()">Homepage</button>
+        <button (click)="restartGame()">Retry</button>
+      </div>
   </div>

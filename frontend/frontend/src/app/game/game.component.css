@@ -1,14 +1,36 @@
-.game {
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .game {
     position: relative;
     width: 100%;
-    height: 500px;
-    border: 1px solid black;
+    height: 1000px;
   }
   
   .score {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
+    color:white;
+  }
+  
+  .Word {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color:white;
   }
   
   .lanes {
@@ -19,48 +41,76 @@
   
   .lane {
     flex: 1;
-    border-right: 1px solid rgb(110, 33, 173);
     position: relative;
   }
   
   .answer {
     position: absolute;
-    width: 100%;
+    width: 50%;
+    margin-left: 100px;
     text-align: center;
+    border-radius: 50px;
     font-size: 16px;
     padding: 5px;
-    background-color: lightblue;
+    background-color: rgb(214, 80, 231);
   }
   
-
-  .player{
+  .player {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(65, 35, 150);
+    bottom: 200px;
+    width: 200px;
+    height: 150px;
+  }
+  
+  #greenplayercolor {
+    filter: hue-rotate(30deg);
+  }
+  
+  #redplayercolor {
+    filter: hue-rotate(0deg) saturate(4);
   }
 
-  #blueplayercolor{
-    position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(65, 35, 150);
-  }
-  #greenplayercolor{
-    position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(62, 201, 43);
+  .timer {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin: 0 auto;
+    text-align: center;
+    width: 30px;
+    color: white;
   }
 
-    
-  #redplayercolor{
-    position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(170, 28, 28);
+  .game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+  }
+  
+  .final-score {
+    font-size: 48px;
+    color: white;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .buttons button {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
   }
