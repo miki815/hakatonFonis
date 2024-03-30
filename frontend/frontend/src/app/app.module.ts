@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { KvizComponent } from './kviz/kviz.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    KvizComponent
   ],
   imports: [
     BrowserModule,
