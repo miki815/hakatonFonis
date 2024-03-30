@@ -2,7 +2,10 @@ import express from 'express';
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import gameRouter from './routers/game.router';
 import kvizRouter from './routers/kviz.router';
+
+import userRouter from './routers/login.routes';
 
 
 
@@ -19,10 +22,11 @@ connection.once('open', ()=>{
     console.log('db connection ok')
 })
 
-const router = express.Router();
-router.use('/kviz', kvizRouter);
+const router=express.Router();
 
+router.use('/game', gameRouter);
 
 app.use('/', router)
+app.use('/users', userRouter)
 
 app.listen(4000, () => console.log(`Express server running on port 4000`));

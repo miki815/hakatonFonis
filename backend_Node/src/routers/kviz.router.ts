@@ -3,7 +3,7 @@ import { KvizController } from '../controllers/kviz.controller';
 
 const kvizRouter = express.Router();
 
-kvizRouter.route('/getQuestion').post(
+kvizRouter.route('/getQuestion').get(
     (req, res)=>new KvizController().getQuestion(req, res)
 )
 
