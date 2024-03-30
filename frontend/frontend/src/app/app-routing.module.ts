@@ -14,10 +14,8 @@ const routes: Routes = [
   { path: "quiz/questions", component: KvizComponent },
   { path: "login", component: LoginComponent },
   {path: 'homepage', component: HomepageComponent},
-  {path: "kviz", component: KvizComponent },
   {path: 'learn', component: LearnComponent},
-  {path: 'register', component: RegisterComponent}
-
+  {path: 'register', component: RegisterComponent},
   { path: "quiz", component: KvizHomepageComponent }
 ];
 

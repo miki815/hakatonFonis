@@ -31,8 +31,10 @@ export class KvizComponent {
   }
 
   getAllQuestions(qtype: string) {
+    console.log("TEST")
     this.kvizService.getQuestion(qtype).subscribe((quest: Question[]) => {
       if (quest) {
+        console.log(quest)
         this.questions = quest;
         this.startTimer();
         this.getQuestion();

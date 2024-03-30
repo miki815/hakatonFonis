@@ -4,7 +4,6 @@ import Game_words from '../models/Game_words';
 
 export class GameController {
     getWord = (req: express.Request, res: express.Response) => {
-        console.log("test");
         let id = Math.floor(Math.random() * 20) + 1;
         Game_words.findOne({ 'id': id }).then((word) => {
             res.json(word);    
