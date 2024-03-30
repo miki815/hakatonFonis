@@ -18,7 +18,7 @@ export class UserService {
   return this.http.post(`${this.uri}/users/login`, data);
 }
 
-register( username: string, password: string, name: string, surname: string, country: string, city: string, telephone: string,email: string,languages: string[]){
+register( username: string, password: string, name: string, surname: string, country: string, city: string, telephone: string,email: string,languages: string[], age: number){
   const data={
     username : username,
     password : password,
@@ -29,6 +29,7 @@ register( username: string, password: string, name: string, surname: string, cou
     telephone : telephone,
     email : email,
     languages : languages,
+    age: age,
 
 
   }

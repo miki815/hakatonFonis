@@ -7,15 +7,14 @@
     <title>Izmenične slike i tekst</title>
     <style>
         body{
-            background-color: #e2f8e1;
+            background-color: #928490  ;
         }
         p{
             font-size: 20px; 
         }
         .naslov {
-            font-family: Monotype Corsiva, Times, Serif;
-            background-color: #e4519a;
-            color: #fff;
+            background-color: #433E49  ;
+            color: lightblue;
             text-align: center;
             padding: 5px;
             margin-bottom: 0px;
@@ -35,7 +34,7 @@
         }
 
         .navbar {
-            background-color: #6bcb69;
+            background-color: #F4F3EA;
             color: #fff;
         }
         
@@ -62,23 +61,24 @@
         }
        .registration-container{
         width: 500px;
+        background-color: #F3E8EB ;
        }
     </style>
 </head>
 <body>
 
 <div class="container-fluid">
-    <div class="naslov">
-       <a href=""><img src="#" style="height: 170px; width: 190px;"></a> Wordly  <a href="index"><img src="assets/logo.png" style="height: 170px; width: 190px;"></a>
+    <div class="naslov" style="width: 100%;">
+       Wordly 
     </div>
     <div class="registration-container">
         <h2>Register</h2>
-        <form >
+        <form>
             <input type="text" name="username" placeholder="Username"   [(ngModel)]="username" required>
             <br>
             <input type="password" name="password" placeholder="Password"  [(ngModel)]="password" required>
             <br>
-            <input type="password" name="confirm_password" placeholder="Comfirm password"   [(ngModel)]="password1" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password"   [(ngModel)]="password1" required>
             <br>
             <input type="text" name="name" placeholder="Name"  [(ngModel)]="name" required>
             <br>
@@ -94,8 +94,8 @@
             <br>
             <input type="city" name="city" placeholder="City"  [(ngModel)]="city" required>
             <br>
-            <select name="languages" [(ngModel)]="languages" required>
-                <option value="English" selected>English</option>
+            <select name="languages" [(ngModel)]="languages" required multiple class="selectt">
+                <option value="English" selected >English</option>
                 <option value="Spanish">Spanish</option>
                 <option value="Serbian">Serbian</option>
 
@@ -107,12 +107,13 @@
             <br>
             <b>Already have account? Log in <a href="login">here</a>.</b>
         </form>
+        <div class="alert alert-danger" role="alert" *ngIf="message" style="width: 100%; text-align: center; margin-top: 20px;">
+            {{ message }}
+          </div>
     </div>
-    <div class="message-container">
-        {{message}}
-    </div>
+    
 </div>
-<footer style="background-color: #e4519a; color: white; text-align: center; padding: 10px;  width: 100%;">
+<footer style="background-color: #433E49 ; color: white   ; text-align: center; padding: 10px;  width: 100%; margin-top: 10px;">
     <p><b>Email</b>: wordly&#64;gmail.com</p>
 </footer>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

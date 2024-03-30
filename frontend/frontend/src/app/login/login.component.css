@@ -6,7 +6,7 @@ body {
 
 .header {
     font-family: Monotype Corsiva, Times, Serif;
-    background-color: #e4519a;
+    background-color: #CBD0D8 ;
     color: #fff;
     text-align: center;
     padding: 5px;
@@ -62,10 +62,11 @@ body {
     color: red;
 }
 
+
 .button {
     border: none;
-    background-color: #6bcb69; 
-    color: #fff; 
+    background-color: lightblue; 
+    color: #433E49 ; 
     padding: 10px 20px; 
     border-radius: 20px; 
     cursor: pointer;
@@ -73,13 +74,14 @@ body {
 }
 
 .button:hover {
-    background-color: #a7f9a3;
+    background-color: #433E49;
+    color: lightblue;
 }
 
 a:hover{
-    color: #a7f9a3; 
+    color: lightblue;
 }
 
 a{
-    color: #6bcb69;
+    color: #433E49;
 }

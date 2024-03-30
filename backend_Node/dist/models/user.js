@@ -26,6 +26,18 @@ let User = new Schema({
         type: String
     },
     city: {
+<<<<<<< HEAD
+        type: String
+    },
+    rate: {
+        type: Number
+    },
+    visitedCities: {
+        type: Array
+    },
+    visitedCountries: {
+        type: Array
+=======
         type: Array
     },
     rate: {
@@ -36,6 +48,7 @@ let User = new Schema({
     },
     visitedCountries: {
         type: String
+>>>>>>> a72c4e6166b119b07da0708e84930708800cc2e5
     },
     pointsQuiz: {
         type: Number

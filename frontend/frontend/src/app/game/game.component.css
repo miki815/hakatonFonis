@@ -16,21 +16,22 @@
   .game {
     position: relative;
     width: 100%;
-    height: 1000px;
+    height: calc(100vh - 100px);
+    margin-top: 50px;
   }
   
   .score {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color:white;
+    color: white;
   }
   
   .Word {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color:white;
+    color: white;
   }
   
   .lanes {
@@ -42,12 +43,13 @@
   .lane {
     flex: 1;
     position: relative;
+    display: flex;
+    justify-content: center;
   }
   
   .answer {
     position: absolute;
     width: 50%;
-    margin-left: 100px;
     text-align: center;
     border-radius: 50px;
     font-size: 16px;
@@ -57,9 +59,9 @@
   
   .player {
     position: absolute;
-    bottom: 200px;
-    width: 200px;
-    height: 150px;
+    bottom: 20%;
+    width: 50vh;
+    height: 25vh;
   }
   
   #greenplayercolor {
@@ -69,17 +71,15 @@
   #redplayercolor {
     filter: hue-rotate(0deg) saturate(4);
   }
-
+  
   .timer {
     font-size: 24px;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin: 0 auto;
     text-align: center;
-    width: 30px;
     color: white;
   }
-
+  
   .game-over {
     position: fixed;
     top: 0;
@@ -87,6 +87,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
@@ -97,20 +98,5 @@
     font-size: 48px;
     color: white;
     text-align: center;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .buttons button {
-    font-size: 24px;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
+    margin-bottom: 30px;
   }
