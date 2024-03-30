@@ -10,8 +10,7 @@ export class User{
     rate: string | undefined;
     visitedCities: string[] | undefined;
     visitedCountries: string[] | undefined;
-    pointsQuiz: string | undefined;
-    pointsGame: string | undefined;
+    points: number | undefined;
     age: string | undefined;
     type: string | undefined;    
 

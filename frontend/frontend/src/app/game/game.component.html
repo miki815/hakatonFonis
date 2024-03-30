@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-12">
         <div class="background">
-          <img src="assets/background.png" alt="Background">
+          <img src="assets/background3.png" alt="Background">
         </div>
       </div>
     </div>
@@ -30,8 +30,8 @@
         <div class="game-over" *ngIf="gameOver">
           <div class="final-score">Score: {{ score }}</div>
           <div class="buttons">
-            <button class="btn btn-light mr-3" (click)="goToHomepage()">Homepage</button>
-            <button class="btn btn-light" (click)="restartGame()">Retry</button>
+            <button id="buttonretryhome" class="btn btn-light mr-3" (click)="goToHomepage()">Homepage</button>
+            <button id="buttonretryhome" class="btn btn-light" (click)="restartGame()">Retry</button>
           </div>
         </div>
       </div>

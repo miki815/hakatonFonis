@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { Game_words } from '../models/Game_words';
 import { Subscription, interval } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface Answer {
   text: string;
@@ -15,7 +16,7 @@ interface Answer {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit, OnDestroy {
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private router: Router) {}
 
   game_word: Game_words;
   playercolor: string = "blueplayercolor";
@@ -29,12 +30,14 @@ export class GameComponent implements OnInit, OnDestroy {
   lastFrameTime = Date.now();
   animationFrameId: number = 0;
 
-  timer: number = 60;
+  timer: number = 20;
   timerSubscription: Subscription;
   isPreparing: boolean = false;
   gameOver: boolean = false;
 
   counter: number=0;
+
+  hit : [];
 
   ngOnInit() {
     this.bringWords();
@@ -59,14 +62,13 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   goToHomepage() {
-    // Implementirajte logiku za navigaciju na početnu stranicu
-    // Na primer: this.router.navigate(['/home']);
+    this.router.navigate(['../homepage']);
   }
 
   restartGame() {
     this.gameOver = false;
     this.score = 0;
-    this.timer = 60;
+    this.timer = 20;
     this.playercolor = "blueplayercolor";
     this.player = 0;
     this.lanes = [{ answers: [] }, { answers: [] }];
@@ -112,7 +114,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
   endGame() {
     this.gameOver = true;
+    /*this.gameService.saveScore(this.username, this.score).subscribe(()=>{
+  
+    } ); */
     cancelAnimationFrame(this.animationFrameId);
+
   }
 
   generateAnswers() {
@@ -138,6 +144,7 @@ export class GameComponent implements OnInit, OnDestroy {
           if (answer.position >= 9 && answer.position < 9.1 && index === this.player) {
             if (answer.isRight) {
               this.score++;
+              this.hit.push() // *
               this.playercolor = "greenplayercolor";
               this.bringWords();
             } else {
@@ -170,4 +177,4 @@ export class GameComponent implements OnInit, OnDestroy {
   movePlayer(laneIndex: number) {
     this.player = laneIndex;
   }
-}
+} 

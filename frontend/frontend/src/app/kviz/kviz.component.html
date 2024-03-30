@@ -14,11 +14,17 @@
 
 
 <div class="container">
+
+    <div class="timpoints">
+        <span class="timer">{{timer}}</span>
+        <span class="points">{{points}}</span>
+
+    </div>
     <h1 class="game-title">EDUKACIJA</h1>
     <p class="game-title">{{message}}</p>
     <p class="game-title">{{city}}</p>
 
-    <textarea class="question-container" rows="4" readonly>{{question.text}}</textarea>
+    <textarea class="question-container question-text" rows="4" readonly>{{question.text}}</textarea>
 
     <div class="answer-container">
         <div class="button-row">
@@ -40,7 +46,4 @@
         </div>
     </div>
 
-    <div class="timer">
-        {{timer}}
-    </div>
 </div>
