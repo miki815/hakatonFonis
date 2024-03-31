@@ -39,42 +39,41 @@ export class UserController {
                             else {
                                 log("OK")
 
-                                let user = new User({
-                                    username: req.body.username,
-                                    name: req.body.name,
-                                    surname: req.body.surname,
-                                    password: req.body.password,
-                                    email: req.body.email,
-                                    telephone: req.body.telephone,
-                                    country: req.body.country,
-                                    city: req.body.city,
-                                    rate: 0,
-                                    visitedCities: [],
-                                    visitedCountries: [],
-                                    pointsQuiz: 0,
-                                    pointsGame: 0,
-                                    age: req.body.age,
-                                    type: req.body.type,
-                                    languages: req.body.languages,
-                                    language: req.body.language
-                                })
-                                log(user)
-                                user.save()
-                                    .then(() => {
-                                        log("User successfully saved.");
-                                        res.status(200).json({ 'message': '0' });
-                                    })
-                                    .catch((err) => {
-                                        log("Error saving user:", err);
-                                        res.status(400).json({ 'message': '-1' });
-                                    });
-                            }
+                        let user= new User({
+                            username: req.body.username,
+                            name: req.body.name,
+                            surname: req.body.surname,
+                            password: req.body.password,
+                            email: req.body.email,
+                            telephone: req.body.telephone,
+                            country: req.body.country,
+                            city: req.body.city,
+                            rate: 0,
+                            visitedCities: [],
+                            visitedCountries: [],
+                            points: 0,
+                            age: req.body.age,
+                            type: req.body.type,
+                            languages:  req.body.languages,
+                            currentCity: null
                         })
-                        .catch(err => {
-
-                        });
-
-                }
+                        log(user)
+                        user.save()
+                            .then(() => {
+                                log("User successfully saved.");
+                                res.status(200).json({'message': '0'});
+                            })
+                            .catch((err) => {
+                                log("Error saving user:", err);
+                                res.status(400).json({'message': '-1'});
+                            });
+                    }
+                })
+                .catch(err => {
+                  
+                });
+        
+            }
 
             })
             .catch(err => {
@@ -160,6 +159,18 @@ export class UserController {
             })
     }
 
+    updateCurrentCity = (req: express.Request, res: express.Response) => {
+        console.log("updating city")
+        let username = req.body.username;
+        let currentCity = req.body.currentCity;
+        User.findOneAndUpdate({ 'username': username },  { 'currentCity': currentCity } )
+            .then((user) => {
+            res.json({'message': 'ok'})
+            }).catch((err) => {
+            console.log(err);
+            res.json({'message': 'err'})
+        })
+    }
 
 
 

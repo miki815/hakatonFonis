@@ -8,6 +8,13 @@ import { Router } from '@angular/router';
 })
 export class KvizHomepageComponent {
   constructor(private router: Router) { }
+  
+  ngOnInit(){
+    var token = localStorage.getItem("token");
+    if(token == "null"){
+      this.router.navigate(["login"]);    }
+  }
+
   quiz(type: number){
     if(type === 1){
       sessionStorage.setItem("question_type", "w");
@@ -19,5 +26,8 @@ export class KvizHomepageComponent {
       sessionStorage.setItem("question_type", "e");
     }
     this.router.navigate(['/quiz/questions']);
+  }
+  logout(){
+    localStorage.setItem("token", null);
   }
 }
