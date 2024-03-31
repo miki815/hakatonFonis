@@ -30,6 +30,7 @@ export class KvizComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("token"));
+    this.city = this.user.currentCity;
     console.log(this.user);
     let qtype = sessionStorage.getItem("question_type");
     this.getAllQuestions(qtype);

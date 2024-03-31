@@ -6,7 +6,7 @@ import { log } from 'console';
 
 export class GameController {
     getWord = (req: express.Request, res: express.Response) => {
-        let id = Math.floor(Math.random() * 20) + 1;
+        let id = Math.floor(Math.random() * 50) + 1;
         Game_words.findOne({ 'id': id }).then((word) => {
             res.json(word);    
         
