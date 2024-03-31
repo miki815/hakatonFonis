@@ -2,6 +2,10 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { Game_words } from '../models/Game_words';
 import { Subscription, interval } from 'rxjs';
+import { Router } from '@angular/router';
+import { KvizService } from '../services/kviz.service';
+import { User } from '../models/users';
+import { Hit } from '../models/hit';
 
 interface Answer {
   text: string;
@@ -15,7 +19,7 @@ interface Answer {
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit, OnDestroy {
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private router: Router, private kvizService: KvizService) {}
 
   game_word: Game_words;
   playercolor: string = "blueplayercolor";
@@ -29,14 +33,19 @@ export class GameComponent implements OnInit, OnDestroy {
   lastFrameTime = Date.now();
   animationFrameId: number = 0;
 
-  timer: number = 60;
+  timer: number = 20;
   timerSubscription: Subscription;
   isPreparing: boolean = false;
   gameOver: boolean = false;
-
+  language: string;
   counter: number=0;
+  hitArr: Hit[];
+  hit: Hit;
 
+  user: User;
   ngOnInit() {
+    this.hitArr = new Array();
+    this.user = JSON.parse(localStorage.getItem("token"));
     this.bringWords();
     this.startTimer();
   }
@@ -50,7 +59,9 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameService.bringWords().subscribe((word: Game_words) => {
       if (word) {
         this.game_word = word;
+        this.generateAnswers();
         this.startGame();
+        
         
       } else {
         alert("Greška");
@@ -59,14 +70,13 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   goToHomepage() {
-    // Implementirajte logiku za navigaciju na početnu stranicu
-    // Na primer: this.router.navigate(['/home']);
+    this.router.navigate(['../homepage']);
   }
 
   restartGame() {
     this.gameOver = false;
     this.score = 0;
-    this.timer = 60;
+    this.timer = 20;
     this.playercolor = "blueplayercolor";
     this.player = 0;
     this.lanes = [{ answers: [] }, { answers: [] }];
@@ -81,9 +91,9 @@ export class GameComponent implements OnInit, OnDestroy {
         const deltaTime = (now - this.lastFrameTime) / 1000;
         this.lastFrameTime = now;
 
-        if (this.lanes[0].answers.length === 0 && this.lanes[1].answers.length === 0) {
-          this.generateAnswers();
-        }
+       
+
+        
 
         this.moveAnswers(deltaTime);
         this.checkCollision();
@@ -112,12 +122,28 @@ export class GameComponent implements OnInit, OnDestroy {
   }
   endGame() {
     this.gameOver = true;
+    this.kvizService.saveScore2(this.user.username, this.score).subscribe((res) => {
+      if (res) {
+        console.log('Score saved')
+        this.gameService.updateHits(this.hitArr).subscribe((res) => {
+          if (res) {
+            console.log('hits updated');
+            this.hitArr = new Array();
+            this.timerSubscription.unsubscribe();
+          }
+        });
+      }
+    });
+    /*this.gameService.saveScore(this.username, this.score).subscribe(()=>{
+  
+    } ); */
     cancelAnimationFrame(this.animationFrameId);
+
   }
 
   generateAnswers() {
     const rightAnswer = Math.random() < 0.5;
-    this.playercolor = "blueplayercolor";
+    //this.playercolor = "blueplayercolor";
     this.lanes[0].answers.push({ text: rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: rightAnswer, position: 0 });
     this.lanes[1].answers.push({ text: !rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: !rightAnswer, position: 0 });
   }
@@ -135,9 +161,24 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!this.gameOver) {
       this.lanes.forEach((lane, index) => {
         lane.answers = lane.answers.filter(answer => {
+          if(answer.position>=1 && index === this.player){
+              this.playercolor = "blueplayercolor";
+
+          }
           if (answer.position >= 9 && answer.position < 9.1 && index === this.player) {
             if (answer.isRight) {
               this.score++;
+              this.hit = new Hit();
+              this.hit.hit_word = this.game_word.right;
+              this.hit.language = this.language;
+              this.hit.id = this.game_word.id;
+
+              
+              this.hit.question = this.game_word.question_word;
+              this.hit.username = this.user.username;
+              this.hitArr.push(this.hit);
+              
+
               this.playercolor = "greenplayercolor";
               this.bringWords();
             } else {
@@ -170,4 +211,4 @@ export class GameComponent implements OnInit, OnDestroy {
   movePlayer(laneIndex: number) {
     this.player = laneIndex;
   }
-}
+} 

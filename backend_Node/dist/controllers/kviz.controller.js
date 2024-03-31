@@ -12,6 +12,7 @@ class KvizController {
             let city = req.body.city;
             let qtype = req.body.qtype;
             console.log(city);
+            console.log(qtype);
             // let id = Math.floor(Math.random() * 4) + 1;
             Question_1.default.find({ 'city': city, 'type': qtype }).then((questions) => {
                 console.log(questions);

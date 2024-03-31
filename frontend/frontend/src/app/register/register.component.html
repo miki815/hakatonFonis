@@ -19,9 +19,6 @@
             background-color: #433E49;
             color: lightblue;
             text-align: center;
-            padding: 5px;
-            margin-bottom: 0px;
-            font-size: 90px;
         }
 
         .tekst {
@@ -74,65 +71,56 @@
 
 <body>
 
-    <div class="container-fluid">
-        <div class="naslov" style="width: 100%;">
-            Wordly
-        </div>
-        <div class="registration-container">
-            <h2>Register</h2>
-            <form>
-                <input type="text" name="username" placeholder="Username" [(ngModel)]="username" required>
-                <br>
-                <input type="password" name="password" placeholder="Password" [(ngModel)]="password" required>
-                <br>
-                <input type="password" name="confirm_password" placeholder="Confirm password" [(ngModel)]="password1"
-                    required>
-                <br>
-                <input type="text" name="name" placeholder="Name" [(ngModel)]="name" required>
-                <br>
-                <input type="text" name="surname" placeholder="Surname" [(ngModel)]="surname" required>
-                <br>
-                <input type="number" name="age" [(ngModel)]="age" required placeholder="Age">
-                <br>
-                <input type="tel" name="telephone" placeholder="Telephone" [(ngModel)]="telephone" required>
-                <br>
-                <input type="email" name="email" placeholder="Email" [(ngModel)]="email" required>
-                <br>
-                <input type="country" name="country" placeholder="Country" [(ngModel)]="country" required>
-                <br>
-                <input type="city" name="city" placeholder="City" [(ngModel)]="city" required>
-                <br>
-                <select name="languages" [(ngModel)]="languages" required multiple class="selectt">
-                    <option value="English" selected>English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="Serbian">Serbian</option>
-
-                </select>
-                <select name="language" [(ngModel)]="language" required class="selectt">
-                    <option value="English" checked>English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="Serbian">Serbian</option>
-
-                </select>
-                <br>
-                <br>
-                <button type="submit" (click)="register()" class="button">Register</button>
-                <br>
-                <br>
-                <b>Already have account? Log in <a href="login">here</a>.</b>
-            </form>
-            <div class="alert alert-danger" role="alert" *ngIf="message"
-                style="width: 100%; text-align: center; margin-top: 20px;">
-                {{ message }}
-            </div>
-        </div>
-
+<div class="container-fluid">
+    <div class="naslov" style="width: 100%;">
+        <img src="assets/logo_hak_transparent.png" alt="BridgeTalk Logo" style=" width: 200px; margin-top: 5px; margin-bottom: 5px;">
     </div>
-    <footer
-        style="background-color: #433E49 ; color: white   ; text-align: center; padding: 10px;  width: 100%; margin-top: 10px;">
-        <p><b>Email</b>: wordly&#64;gmail.com</p>
-    </footer>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="registration-container">
+        <h2>Register</h2>
+        <form>
+            <input type="text" name="username" placeholder="Username"   [(ngModel)]="username" required>
+            <br>
+            <input type="password" name="password" placeholder="Password"  [(ngModel)]="password" required>
+            <br>
+            <input type="password" name="confirm_password" placeholder="Confirm password"   [(ngModel)]="password1" required>
+            <br>
+            <input type="text" name="name" placeholder="Name"  [(ngModel)]="name" required>
+            <br>
+            <input type="text" name="surname" placeholder="Surname"  [(ngModel)]="surname" required>
+            <br>
+            <input type="number" name="age" [(ngModel)]="age" required placeholder="Age">
+            <br>
+            <input type="tel" name="telephone" placeholder="Telephone"  [(ngModel)]="telephone" required>
+            <br>
+            <input type="email" name="email" placeholder="Email"  [(ngModel)]="email" required>
+            <br>
+            <input type="country" name="country" placeholder="Country"  [(ngModel)]="country" required>
+            <br>
+            <input type="city" name="city" placeholder="City"  [(ngModel)]="city" required>
+            <br>
+            <select name="languages" [(ngModel)]="languages" required multiple class="selectt">
+                <option value="English" selected >English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Serbian">Serbian</option>
+
+            </select>
+            <br>
+            <br>
+            <button type="submit" (click)="register()" class="button">Register</button>
+            <br>
+            <br>
+            <b>Already have account? Log in <a href="login">here</a>.</b>
+        </form>
+        <div class="alert alert-danger" role="alert" *ngIf="message" style="width: 100%; text-align: center; margin-top: 20px;">
+            {{ message }}
+          </div>
+    </div>
+    
+</div>
+<footer style="background-color: #433E49 ; color: white   ; text-align: center; padding: 10px;  width: 100%; margin-top: 20px;">
+    <p><b>Email</b>: wordly&#64;gmail.com</p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
     if (!this.password || !this.username) {
       this.message = "Input all fields."
     } else {
-      this.userService.login(this.username, this.password).subscribe((user: User) => {
-        if (user) {
-          //  const tokenPayload = { user: user }
+      this.userService.login(this.username, this.password).subscribe((user: any)=>{
+        if(user){
+          /*const tokenPayload = { user: user }
+          const token = btoa(JSON.stringify(tokenPayload)); */
           localStorage.setItem('token', JSON.stringify(user));
           this.router.navigate(["/homepage"]);
         } else {
