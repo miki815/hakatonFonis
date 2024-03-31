@@ -17,4 +17,5 @@ userRouter.route('/allMyConnections').post((req, res) => new user_controller_1.U
 userRouter.route('/posaljiporuku').post((req, res) => new user_controller_1.UserController().posaljiPoruku(req, res));
 userRouter.route('/poruke').post((req, res) => new user_controller_1.UserController().poruke(req, res));
 userRouter.route('/rate').post((req, res) => new user_controller_1.UserController().rate(req, res));
+userRouter.route('/myrate').post((req, res) => new user_controller_1.UserController().myRate(req, res));
 exports.default = userRouter;

@@ -45,6 +45,7 @@ export class ConnestionsComponent {
   connect(username: string) {
     var user = JSON.parse(localStorage.getItem('token') || '{}');
     this.userService.connect(user.username, username).subscribe((res) => {
+      alert("Connection request sent!")
       this.router.navigate(['/connections']);
     });
   }

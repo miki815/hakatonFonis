@@ -90,6 +90,12 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/users/rate`, data);
   }
+  myRate(username: string) {
+    const data = {
+      username: username
+    }
+    return this.http.post(`${this.uri}/users/myrate`, data);
+  }
 
 
 }

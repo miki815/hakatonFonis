@@ -42,6 +42,9 @@
             <tbody>
                 <tr *ngFor="let user of users">
                     <td>{{ user.users[0] }}</td>
+                    <td>
+                        4.3
+                    </td>
                     <td *ngIf="user.conneceted != 1">
                         <div class="slider-container">
                             <input type="range" min="1" max="5" value="1" step="1" class="slider" id="mySlider"
@@ -51,6 +54,7 @@
                         </div>
 
                     </td>
+
                     <td><button class="button" *ngIf="user.button && user.conneceted == 1"
                             (click)="connect(user.users[0])">Connect</button>
                     </td>

@@ -16,7 +16,9 @@ export class MyConnectionsComponent {
 
 
   constructor(private userService: UserService, private router: Router) { }
-
+  ratee: number = 0;
+  index: number = 0;
+  items: { [key: string]: number }[] = [];
   ngOnInit(): void {
     var user = JSON.parse(localStorage.getItem('token') || '{}');
     this.userService.allMyConnections(user.username).subscribe((users: Connection[]) => {
@@ -28,6 +30,11 @@ export class MyConnectionsComponent {
           this.users[i].button = 1;
         }
         this.users[i].users = this.users[i].users.filter((user1: string) => user1 != user.username);
+        this.items.push({ [this.users[i].users[0]]: 0 });
+        this.myRate(this.users[i].users[0])
+
+
+        // alert(this.items[0][this.users[i].users[0]]);
       }
     });
 
@@ -49,6 +56,13 @@ export class MyConnectionsComponent {
     var user = JSON.parse(localStorage.getItem('token') || '{}');
     this.userService.rate(username, user.username, r).subscribe((res) => {
       alert("You have rated this user!");
+    });
+  }
+
+  myRate(username) {
+    this.userService.myRate(username).subscribe((res: any) => {
+      const targetItem = this.items.find(item => Object.keys(item)[0] === username);
+      targetItem[username] = (res.rate / res.count) ? (res.rate / res.count) : 0;
     });
   }
 

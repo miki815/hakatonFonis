@@ -6,7 +6,7 @@ let MyConnections = new Schema({
     users: {
         type: Array
     },
-    connected: {
+    conneceted: {
         type: Number
     }
 })

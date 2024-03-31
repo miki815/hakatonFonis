@@ -46,5 +46,9 @@ userRouter.route('/rate').post(
     (req, res) => new UserController().rate(req, res)
 )
 
+userRouter.route('/myrate').post(
+    (req, res) => new UserController().myRate(req, res)
+)
+
 
 export default userRouter;
