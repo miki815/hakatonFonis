@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const console_1 = require("console");
+const MyConnections_1 = __importDefault(require("../models/MyConnections"));
 let id = 0;
 let idDog = 0;
 class UserController {
@@ -53,6 +54,7 @@ class UserController {
                                 age: req.body.age,
                                 type: req.body.type,
                                 languages: req.body.languages,
+                                language: req.body.language
                             });
                             (0, console_1.log)(user);
                             user.save()
@@ -71,6 +73,78 @@ class UserController {
                 }
             })
                 .catch(err => {
+            });
+        };
+        this.connections = (req, res) => {
+            let city = req.body.city;
+            let languages = req.body.languages;
+            let users1 = [];
+            user_1.default.find({
+                'city': city
+            })
+                .then((users) => {
+                if (users.length > 0) {
+                    for (let i = 0; i < users.length; i++) {
+                        const hasCommonElement = languages.some(item => users[i].languages.includes(item));
+                        if (hasCommonElement) {
+                            users1.push(users[i]);
+                        }
+                    }
+                    console.log("Added: " + users1);
+                    res.json(users1);
+                }
+                else {
+                    res.json(null);
+                }
+            });
+        };
+        this.myconnections = (req, res) => {
+            let username1 = req.body.username1;
+            let username2 = req.body.username2;
+            let connected = [];
+            MyConnections_1.default.find({})
+                .then((conn) => {
+                if (conn.length > 0) {
+                    for (let i = 0; i < conn.length; i++) {
+                        if (conn[i].users.includes(username1) && conn[i].users.includes(username2)) {
+                            connected.push(conn[i]);
+                        }
+                    }
+                    res.json(connected);
+                }
+                else {
+                    res.json(null);
+                }
+            });
+        };
+        this.connect = (req, res) => {
+            let username1 = req.body.username;
+            let username2 = req.body.username2;
+            console.log(username1);
+            console.log(username2);
+            MyConnections_1.default.find({ $and: [{ users: username1 }, { users: username2 }] })
+                .then((conn) => {
+                if (conn.length > 0) {
+                    console.log(conn[0]);
+                    conn[0].connected = 2;
+                    conn[0].save();
+                }
+                else {
+                    let connection = new MyConnections_1.default({
+                        users: [username1, username2],
+                        connected: 1
+                    });
+                    console.log(connection);
+                    connection.save();
+                }
+            });
+        };
+        this.allMyConnections = (req, res) => {
+            let username = req.body.username;
+            console.log(username);
+            MyConnections_1.default.find({ users: { $in: username } })
+                .then((connections) => {
+                res.json(connections);
             });
         };
     }

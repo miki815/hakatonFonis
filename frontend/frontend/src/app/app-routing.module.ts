@@ -7,6 +7,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LearnComponent } from './learn/learn.component';
 import { RegisterComponent } from './register/register.component';
 import { KvizHomepageComponent } from './kviz-homepage/kviz-homepage.component';
+import { ConnestionsComponent } from './connestions/connestions.component';
+import { MyConnectionsComponent } from './my-connections/my-connections.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -15,6 +17,12 @@ const routes: Routes = [
   { path: 'game', component: GameComponent },
   { path: "quiz/questions", component: KvizComponent },
   { path: "login", component: LoginComponent },
+  { path: 'homepage', component: HomepageComponent },
+  { path: 'learn', component: LearnComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: "quiz", component: KvizHomepageComponent },
+  { path: "connestions", component: ConnestionsComponent },
+  { path: "myconnections", component: MyConnectionsComponent }
   {path: 'homepage', component: HomepageComponent},
   {path: 'learn', component: LearnComponent},
   {path: 'register', component: RegisterComponent},

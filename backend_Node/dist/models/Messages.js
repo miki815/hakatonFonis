@@ -5,21 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
-let Hit = new Schema({
-    username: {
+let Messages = new Schema({
+    username1: {
         type: String
     },
-    id: {
-        type: Number
-    },
-    hit_word: {
+    username2: {
         type: String
     },
-    language: {
+    messages: {
+        type: Array
+    },
+    photo1: {
         type: String
     },
-    question: {
+    photo2: {
         type: String
     },
 });
-exports.default = mongoose_1.default.model('Hit', Hit, 'hit');
+exports.default = mongoose_1.default.model('Messages', Messages, 'messages');

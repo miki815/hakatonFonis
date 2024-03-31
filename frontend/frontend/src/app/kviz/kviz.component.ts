@@ -83,8 +83,8 @@ export class KvizComponent {
       this.btnClass[answerId - 1] = "wrong-answer";
       this.points -= 1;
     }
-    if (this.questionCnt++ == 4) {
-      this.message = "Game over! Final score: " + this.correctCnt.toString();
+    if (this.questionCnt++ == 2) {
+      this.message = "Igra je završena! Tačnih odgovora: " + this.correctCnt.toString();
       this.timer = 0;
       this.kvizService.saveScore2(this.user.username, this.points).subscribe((res) => {
         if (res) {

@@ -4,12 +4,21 @@ import Game_words
 const Schema = mongoose.Schema;
 
 let Hit = new Schema({
+    username: {
+        type: String
+    },
     id: {
         type: Number
     },
-    question:{
-        type: Game_words
-    }
+    hit_word:{
+        type: String
+    },
+    language:{
+        type: String
+    },
+    question: {
+        type: String
+    },
     
 })
 
