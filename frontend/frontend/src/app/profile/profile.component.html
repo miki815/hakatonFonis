@@ -19,19 +19,18 @@
 <body>
 
     <div
-        style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
-        <a href="/homepage">Home</a>
-        <a href="/profile">Profile</a>
-        <a href="/messages">Chats</a>
-        <a href="/connestions">Connect</a>
-
-        <a href="/about">About</a>
-        <a href="#" (click)="logout()">Logout</a>
-        <div class="user-info2">
-            <span>Level: {{ level }}</span>
-            <span style="margin-left: 10px;">Points: {{ user.points }}</span>
-        </div>
+    style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
+    <a href="/homepage">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/messages">Chats</a>
+    <a href="/connestions">Connect</a>
+    <a href="/about">About</a>
+    <a href="#" (click)="logout()">Logout</a>
+    <div class="user-info">
+        <span>Level: {{ level }}</span>
+        <span style="margin-left: 10px;">Points: {{ user.points }}</span>
     </div>
+</div>
     <div class="main-container" style="display: flex; justify-content: center; ">
         <div class="user-info-container">
             <div class="user-info">

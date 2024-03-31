@@ -14,6 +14,16 @@ export class GameController {
             console.log(err);
         })
     }
+    getHits = (req: express.Request, res: express.Response) => {
+        console.log( req.body.username);
+        Hit.find({ 'username': req.body.username }).then((word) => {
+            console.log(word)
+            res.json(word);    
+        
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
     getWord2 = (req: express.Request, res: express.Response) => {
         let city = req.body.city;

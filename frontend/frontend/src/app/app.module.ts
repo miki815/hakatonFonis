@@ -14,6 +14,7 @@ import { ConnestionsComponent } from './connestions/connestions.component';
 import { MyConnectionsComponent } from './my-connections/my-connections.component';
 import { MessageBundle } from '@angular/compiler';
 import { MessagesComponent } from './messages/messages.component';
+import { LearnedWordsComponent } from './learned-words/learned-words.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MessagesComponent } from './messages/messages.component';
     KvizHomepageComponent,
     ConnestionsComponent,
     MyConnectionsComponent,
-    MessagesComponent
+    MessagesComponent,
+    LearnedWordsComponent
   ],
   imports: [
     BrowserModule,

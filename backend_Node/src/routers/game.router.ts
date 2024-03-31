@@ -13,4 +13,8 @@ gameRouter.route('/updateHits').post(
     (req, res)=>new GameController().updateHits(req, res)
 )
 
+gameRouter.route('/getHits').post(
+    (req, res)=>new GameController().getHits(req, res)
+)
+
 export default gameRouter;
