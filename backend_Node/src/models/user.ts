@@ -45,7 +45,7 @@ let User = new Schema({
     languages: {
         type: Array
     },
-    language: {
+    currentCity: {
         type: String
     }
 

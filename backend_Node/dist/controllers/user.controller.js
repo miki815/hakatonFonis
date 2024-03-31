@@ -54,7 +54,7 @@ class UserController {
                                 age: req.body.age,
                                 type: req.body.type,
                                 languages: req.body.languages,
-                                language: req.body.language
+                                currentCity: null
                             });
                             (0, console_1.log)(user);
                             user.save()
@@ -145,6 +145,18 @@ class UserController {
             MyConnections_1.default.find({ users: { $in: username } })
                 .then((connections) => {
                 res.json(connections);
+            });
+        };
+        this.updateCurrentCity = (req, res) => {
+            console.log("updating city");
+            let username = req.body.username;
+            let currentCity = req.body.currentCity;
+            user_1.default.findOneAndUpdate({ 'username': username }, { 'currentCity': currentCity })
+                .then((user) => {
+                res.json({ 'message': 'ok' });
+            }).catch((err) => {
+                console.log(err);
+                res.json({ 'message': 'err' });
             });
         };
     }

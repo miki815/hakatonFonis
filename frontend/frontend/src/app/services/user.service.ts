@@ -31,8 +31,9 @@ export class UserService {
       email: email,
       languages: languages,
       age: age,
-      language: language
-
+      language: language,
+      points: 0,
+      currentCity: null
     }
     return this.http.post(`${this.uri}/users/register`, data);
   }
@@ -57,6 +58,13 @@ export class UserService {
     }
     return this.http.post(`${this.uri}/users/allMyConnections`, data);
   }
+  updateCurrentCity(username: string, currentCity: string) {
+    const data = {
+      username: username,
+      currentCity: currentCity
+    }
+    return this.http.post(`${this.uri}/users/updateCurrentCity`, data);
 
+  }
 
 }

@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   email: string | undefined;
   telephone: string | undefined;
   age: number | undefined;
-
+  language: string | undefined;
   country: string | undefined;
   city: string | undefined;
   type: string | undefined; 
@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
             this.email,
             this.languages,
             this.age,
-            0
+            this.language
             ).subscribe((message: any )=>{
               if(message['message'] ==  "0"){
                 this.router.navigate(["/login"]);

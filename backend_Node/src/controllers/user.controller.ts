@@ -55,6 +55,7 @@ export class UserController {
                             age: req.body.age,
                             type: req.body.type,
                             languages:  req.body.languages,
+                            currentCity: null
                         })
                         log(user)
                         user.save()
@@ -158,6 +159,18 @@ export class UserController {
             })
     }
 
+    updateCurrentCity = (req: express.Request, res: express.Response) => {
+        console.log("updating city")
+        let username = req.body.username;
+        let currentCity = req.body.currentCity;
+        User.findOneAndUpdate({ 'username': username },  { 'currentCity': currentCity } )
+            .then((user) => {
+            res.json({'message': 'ok'})
+            }).catch((err) => {
+            console.log(err);
+            res.json({'message': 'err'})
+        })
+    }
 
 
 
