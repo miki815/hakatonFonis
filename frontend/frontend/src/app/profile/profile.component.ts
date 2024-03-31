@@ -11,33 +11,33 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-    constructor(private router: Router, private userService: UserService) { }
-    user: User;
+  constructor(private router: Router, private userService: UserService) { }
+  user: User;
 
 
-    ngOnInit(){
-      var token = localStorage.getItem("token");
-      if(token == "null"){
-        this.router.navigate(["login"]);   
-      } else {
-        this.user = JSON.parse(token);
+  ngOnInit() {
+    var token = localStorage.getItem("token");
+    if (token == "null") {
+      this.router.navigate(["login"]);
+    } else {
+      this.user = JSON.parse(token);
+    }
+  }
+
+  submitCity() {
+    const citySelect = document.getElementById("citySelect") as HTMLSelectElement;
+    let selectedCity = citySelect.value;
+    this.userService.updateCurrentCity(this.user.username, selectedCity).subscribe((res: any) => {
+      if (res) {
+        alert("Visiting city updated!");
+        this.user.currentCity = selectedCity;
+        localStorage.setItem('token', JSON.stringify(this.user));
       }
-    }
-
-    submitCity(){
-      const citySelect = document.getElementById("citySelect") as HTMLSelectElement;
-      let selectedCity = citySelect.value;
-      this.userService.updateCurrentCity(this.user.username, selectedCity).subscribe((res: any)=>{
-        if(res){
-          console.log("city updated");
-          this.user.currentCity = selectedCity;
-          localStorage.setItem('token', JSON.stringify(this.user));
-        } 
-      });
-    }
+    });
+  }
 
 
-    logout(){
-      localStorage.setItem("token", null);
-    }
+  logout() {
+    localStorage.setItem("token", null);
+  }
 }

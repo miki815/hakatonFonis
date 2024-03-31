@@ -42,5 +42,9 @@ userRouter.route('/poruke').post(
     (req, res) => new UserController().poruke(req, res)
 )
 
+userRouter.route('/rate').post(
+    (req, res) => new UserController().rate(req, res)
+)
+
 
 export default userRouter;
