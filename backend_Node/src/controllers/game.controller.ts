@@ -6,11 +6,23 @@ import { log } from 'console';
 
 export class GameController {
     getWord = (req: express.Request, res: express.Response) => {
-        let id = Math.floor(Math.random() * 20) + 1;
+        let id = Math.floor(Math.random() * 50) + 1;
         Game_words.findOne({ 'id': id }).then((word) => {
             res.json(word);    
         
         }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    getWord2 = (req: express.Request, res: express.Response) => {
+        let city = req.body.city;
+        console.log(city);
+        // let id = Math.floor(Math.random() * 4) + 1;
+        Game_words.find({ 'city': city}).then((words) => {
+            console.log(words);
+            res.json(words);
+        }).catch((err) => {
             console.log(err);
         })
     }

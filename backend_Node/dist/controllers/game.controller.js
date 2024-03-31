@@ -10,9 +10,20 @@ const console_1 = require("console");
 class GameController {
     constructor() {
         this.getWord = (req, res) => {
-            let id = Math.floor(Math.random() * 20) + 1;
+            let id = Math.floor(Math.random() * 50) + 1;
             Game_words_1.default.findOne({ 'id': id }).then((word) => {
                 res.json(word);
+            }).catch((err) => {
+                console.log(err);
+            });
+        };
+        this.getWord2 = (req, res) => {
+            let city = req.body.city;
+            console.log(city);
+            // let id = Math.floor(Math.random() * 4) + 1;
+            Game_words_1.default.find({ 'city': city }).then((words) => {
+                console.log(words);
+                res.json(words);
             }).catch((err) => {
                 console.log(err);
             });

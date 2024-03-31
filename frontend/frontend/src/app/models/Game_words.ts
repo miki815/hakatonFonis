@@ -3,4 +3,5 @@ export class Game_words{
     question_word: string;
     right: string;
     wrong: string;
+    city: string;
 }

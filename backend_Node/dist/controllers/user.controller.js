@@ -51,12 +51,11 @@ class UserController {
                                 rate: 0,
                                 visitedCities: [],
                                 visitedCountries: [],
-                                pointsQuiz: 0,
-                                pointsGame: 0,
+                                points: 0,
                                 age: req.body.age,
                                 type: req.body.type,
                                 languages: req.body.languages,
-                                language: req.body.language
+                                currentCity: null
                             });
                             (0, console_1.log)(user);
                             user.save()
@@ -219,6 +218,18 @@ class UserController {
             }).catch((err) => {
                 console.error(err);
                 res.status(500).json({ error: 'Došlo je do greške prilikom pretrage poruka.' });
+            });
+        };
+        this.updateCurrentCity = (req, res) => {
+            console.log("updating city");
+            let username = req.body.username;
+            let currentCity = req.body.currentCity;
+            user_1.default.findOneAndUpdate({ 'username': username }, { 'currentCity': currentCity })
+                .then((user) => {
+                res.json({ 'message': 'ok' });
+            }).catch((err) => {
+                console.log(err);
+                res.json({ 'message': 'err' });
             });
         };
     }

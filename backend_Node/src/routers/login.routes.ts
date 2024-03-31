@@ -27,6 +27,9 @@ userRouter.route('/connect').post(
     (req, res) => new UserController().connect(req, res)
 )
 
+userRouter.route('/updateCurrentCity').post(
+    (req, res) => new UserController().updateCurrentCity(req, res)
+)
 userRouter.route('/allMyConnections').post(
     (req, res) => new UserController().allMyConnections(req, res)
 )

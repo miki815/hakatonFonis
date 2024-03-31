@@ -17,6 +17,9 @@ let Game_words = new Schema({
     },
     wrong: {
         type: String
-    }
+    },
+    city: {
+        type: String
+    },
 });
 exports.default = mongoose_1.default.model('Game_words', Game_words, 'game_words');
