@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     var token = localStorage.getItem("token");
-    if(token == "null"){
-      this.router.navigate(["login"]);    }
+    if (token == "null") {
+      this.router.navigate(["login"]);
+    }
   }
   game() {
     this.router.navigate(['../game']);
@@ -24,7 +25,10 @@ export class HomepageComponent {
     this.router.navigate(['../quiz']);
   }
 
-  logout(){
+  connect() {
+    this.router.navigate(['connestions']);
+  }
+  logout() {
     localStorage.setItem("token", null);
   }
 }

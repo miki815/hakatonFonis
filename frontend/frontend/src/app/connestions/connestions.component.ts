@@ -27,7 +27,7 @@ export class ConnestionsComponent {
           }
         }
         this.users = users;
-        this.userService.allMyConnections(user.username).subscribe((res: Connection[]) => { 
+        this.userService.allMyConnections(user.username).subscribe((res: Connection[]) => {
           for (let i = 0; i < this.users.length; i++) {
             for (let j = 0; j < res.length; j++) {
               if (this.users[i].username == res[j].users[0] || this.users[i].username == res[j].users[1]) {
@@ -35,7 +35,7 @@ export class ConnestionsComponent {
               }
             }
           }
-        
+
         });
       }
     });
@@ -47,6 +47,10 @@ export class ConnestionsComponent {
     this.userService.connect(user.username, username).subscribe((res) => {
       this.router.navigate(['/connections']);
     });
+  }
+
+  logout() {
+    localStorage.setItem("token", null);
   }
 }
 

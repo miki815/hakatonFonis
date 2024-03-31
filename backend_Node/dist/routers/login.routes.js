@@ -13,4 +13,7 @@ userRouter.route('/myconnections').post((req, res) => new user_controller_1.User
 userRouter.route('/allMyConnections').post((req, res) => new user_controller_1.UserController().allMyConnections(req, res));
 userRouter.route('/connect').post((req, res) => new user_controller_1.UserController().connect(req, res));
 userRouter.route('/updateCurrentCity').post((req, res) => new user_controller_1.UserController().updateCurrentCity(req, res));
+userRouter.route('/allMyConnections').post((req, res) => new user_controller_1.UserController().allMyConnections(req, res));
+userRouter.route('/posaljiporuku').post((req, res) => new user_controller_1.UserController().posaljiPoruku(req, res));
+userRouter.route('/poruke').post((req, res) => new user_controller_1.UserController().poruke(req, res));
 exports.default = userRouter;

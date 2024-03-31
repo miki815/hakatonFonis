@@ -7,6 +7,7 @@ exports.UserController = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const console_1 = require("console");
 const MyConnections_1 = __importDefault(require("../models/MyConnections"));
+const Poruka_1 = __importDefault(require("../models/Poruka"));
 let id = 0;
 let idDog = 0;
 class UserController {
@@ -145,6 +146,78 @@ class UserController {
             MyConnections_1.default.find({ users: { $in: username } })
                 .then((connections) => {
                 res.json(connections);
+            });
+        };
+        this.poruke = (req, res) => {
+            const korisnickoIme = req.body.korisnickoIme;
+            console.log(korisnickoIme);
+            Poruka_1.default.find({ $or: [{ 'korisnickoIme1': korisnickoIme }, { 'korisnickoIme2': korisnickoIme }] })
+                .then((data) => {
+                if (data) {
+                    res.json(data);
+                }
+                else {
+                    console.log([]);
+                    res.json([]);
+                }
+            })
+                .catch((err) => {
+                console.error('Greška prilikom pretrage poruka:', err);
+                res.status(500).json({ error: 'Greška prilikom pretrage poruka' });
+            });
+        };
+        this.posaljiPoruku = (req, res) => {
+            let korisnickoIme = req.body.username;
+            let korisnickoIme1 = req.body.username1;
+            Poruka_1.default.findOne({
+                $or: [
+                    { $and: [{ "korisnickoIme1": korisnickoIme }, { "korisnickoIme2": korisnickoIme1 }] },
+                    { $and: [{ "korisnickoIme1": korisnickoIme1 }, { "korisnickoIme2": korisnickoIme }] }
+                ]
+            }).then((data) => {
+                if (data) {
+                    console.log("Stara poruka:");
+                    console.log(req.body.novaPoruka);
+                    data.poruke.push(req.body.novaPoruka);
+                    console.log(data);
+                    const data1 = new Poruka_1.default({
+                        poruke: data.poruke,
+                        korisnickoIme1: data.korisnickoIme1,
+                        korisnickoIme2: data.korisnickoIme2,
+                        slika1: data.slika1,
+                        slika2: data.slika2
+                    });
+                    console.log(data1);
+                    data1.save().then(() => {
+                        console.log("Poruka poslata.");
+                        res.json("Poruka poslata.");
+                    }).catch((err) => {
+                        console.error(err);
+                        res.status(500).json({ error: 'Došlo je do greške prilikom čuvanja nove poruke.' });
+                    });
+                    Poruka_1.default.deleteOne({ _id: data._id }).then(() => {
+                    }).catch((err) => {
+                        console.error(err);
+                        res.status(500).json({ error: 'Došlo je do greške prilikom brisanja postojeće poruke.' });
+                    });
+                }
+                else {
+                    const data1 = new Poruka_1.default({
+                        poruke: [req.body.novaPoruka],
+                        korisnickoIme1: req.body.korisnickoIme1,
+                        korisnickoIme2: req.body.korisnickoIme2,
+                    });
+                    // Sačuvati novi dokument
+                    data1.save().then(() => {
+                        res.json("Nova poruka sačuvana.");
+                    }).catch((err) => {
+                        console.error(err);
+                        res.status(500).json({ error: 'Došlo je do greške prilikom čuvanja nove poruke.' });
+                    });
+                }
+            }).catch((err) => {
+                console.error(err);
+                res.status(500).json({ error: 'Došlo je do greške prilikom pretrage poruka.' });
             });
         };
         this.updateCurrentCity = (req, res) => {

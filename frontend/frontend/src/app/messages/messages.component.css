@@ -1,0 +1,43 @@
+.skrol {
+    overflow-y: auto;
+    max-height: 500px;
+
+}
+
+.poruke {
+    border: 3px solid;
+    max-width: 500px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.jednaPoruka {
+    border-width: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+
+
+}
+
+.svePoruke:nth-child(even) {
+    float: left;
+}
+
+.right {
+    margin-left: auto;
+
+}
+
+a:hover {
+    color: lightblue;
+    text-decoration: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}

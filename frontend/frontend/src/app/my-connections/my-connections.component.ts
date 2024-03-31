@@ -40,4 +40,8 @@ export class MyConnectionsComponent {
     });
   }
 
+  logout() {
+    localStorage.setItem("token", null);
+  }
+
 }

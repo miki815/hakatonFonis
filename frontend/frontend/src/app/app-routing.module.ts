@@ -11,6 +11,8 @@ import { ConnestionsComponent } from './connestions/connestions.component';
 import { MyConnectionsComponent } from './my-connections/my-connections.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessagesComponent } from './messages/messages.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,12 +25,11 @@ const routes: Routes = [
   { path: "quiz", component: KvizHomepageComponent },
   { path: "connestions", component: ConnestionsComponent },
   { path: "myconnections", component: MyConnectionsComponent },
-  {path: 'homepage', component: HomepageComponent},
-  {path: 'learn', component: LearnComponent},
-  {path: 'register', component: RegisterComponent},
   { path: "quiz", component: KvizHomepageComponent },
   { path: "about", component: AboutComponent },
-  { path: "profile", component: ProfileComponent}
+  { path: "profile", component: ProfileComponent },
+  { path: "messages", component: MessagesComponent },
+
 ];
 
 @NgModule({
