@@ -58,5 +58,21 @@ export class UserService {
     return this.http.post(`${this.uri}/users/allMyConnections`, data);
   }
 
+  poruke1(username: string) {
+    const data = {
+      korisnickoIme: username
+    }
+    return this.http.post(`${this.uri}/users/poruke`, data);
+  }
+
+  posaljiPoruku(poruka: any, username: string, username1: string) {
+    const data = {
+      username: username,
+      novaPoruka: poruka,
+      username1: username1,
+    }
+    return this.http.post(`${this.uri}/users/posaljiporuku`, data);
+  }
+
 
 }

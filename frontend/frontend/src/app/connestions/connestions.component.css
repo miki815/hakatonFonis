@@ -6,7 +6,7 @@ body {
 
 .header {
     font-family: Monotype Corsiva, Times, Serif;
-    background-color: #CBD0D8 ;
+    background-color: #CBD0D8;
     color: #fff;
     text-align: center;
     padding: 5px;
@@ -55,9 +55,9 @@ body {
 
 .message-container {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 30vh; 
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
     font-size: large;
     color: red;
 }
@@ -65,10 +65,10 @@ body {
 
 .button {
     border: none;
-    background-color: lightblue; 
-    color: #433E49 ; 
-    padding: 10px 20px; 
-    border-radius: 20px; 
+    background-color: lightblue;
+    color: #433E49;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 17px;
 }
@@ -78,10 +78,32 @@ body {
     color: lightblue;
 }
 
-a:hover{
+a:hover {
     color: lightblue;
 }
 
-a{
+a {
     color: #433E49;
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #CBD0D8;
+    margin: 0;
+}
+
+
+
+a:hover {
+    color: lightblue;
+    text-decoration: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
 }

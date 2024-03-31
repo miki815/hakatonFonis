@@ -27,6 +27,17 @@ userRouter.route('/connect').post(
     (req, res) => new UserController().connect(req, res)
 )
 
+userRouter.route('/allMyConnections').post(
+    (req, res) => new UserController().allMyConnections(req, res)
+)
+
+userRouter.route('/posaljiporuku').post(
+    (req, res) => new UserController().posaljiPoruku(req, res)
+)
+
+userRouter.route('/poruke').post(
+    (req, res) => new UserController().poruke(req, res)
+)
 
 
 export default userRouter;
