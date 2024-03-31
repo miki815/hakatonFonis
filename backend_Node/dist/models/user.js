@@ -51,9 +51,6 @@ let User = new Schema({
     },
     currentCity: {
         type: String
-    },
-    currentCity: {
-        type: String
     }
 });
 exports.default = mongoose_1.default.model('User', User, 'users');

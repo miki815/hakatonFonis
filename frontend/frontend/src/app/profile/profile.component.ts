@@ -31,12 +31,10 @@ export class ProfileComponent {
       this.userService.updateCurrentCity(this.user.username, selectedCity).subscribe((res: any)=>{
         if(res){
           console.log("city updated");
-          this.user.currentCity=selectedCity;
-            localStorage.setItem('token', JSON.stringify(this.user));
+          this.user.currentCity = selectedCity;
+          localStorage.setItem('token', JSON.stringify(this.user));
         } 
       });
-
-      this.user.currentCity = selectedCity;
     }
 
 

@@ -32,7 +32,10 @@ export class HomepageComponent {
     this.router.navigate(['../quiz']);
   }
 
-  logout(){
+  connect() {
+    this.router.navigate(['connestions']);
+  }
+  logout() {
     localStorage.setItem("token", null);
   }
 }

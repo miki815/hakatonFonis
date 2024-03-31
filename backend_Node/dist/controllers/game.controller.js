@@ -10,7 +10,7 @@ const console_1 = require("console");
 class GameController {
     constructor() {
         this.getWord = (req, res) => {
-            let id = Math.floor(Math.random() * 20) + 1;
+            let id = Math.floor(Math.random() * 50) + 1;
             Game_words_1.default.findOne({ 'id': id }).then((word) => {
                 res.json(word);
             }).catch((err) => {
