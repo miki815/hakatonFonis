@@ -44,8 +44,6 @@
                     <td><button class="button" *ngIf="user.button && user.conneceted == 1"
                             (click)="connect(user.users[0])">Connect</button>
                     </td>
-                    <td><button class="button" *ngIf="user.conneceted != 1"
-                            (click)="connect(user.users[0])">Message</button></td>
                 </tr>
             </tbody>
         </table>

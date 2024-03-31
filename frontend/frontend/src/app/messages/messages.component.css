@@ -15,9 +15,10 @@
 
 .jednaPoruka {
     border-width: 10px;
-    background-color: black;
+    background-color: #433E49;
     color: white;
     border-radius: 25px;
+    padding: 10px;
 
 
 }
@@ -40,4 +41,27 @@ a {
     color: white;
     text-decoration: none;
     font-size: 20px;
+}
+
+button {
+    border: none;
+    background-color: lightblue;
+    color: #433E49;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px;
+    ;
+}
+
+button:hover {
+    background-color: #433E49;
+    color: lightblue;
+}
+
+body {
+    background-color: #928490;
+    height: 1000px;
+
 }

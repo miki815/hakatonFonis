@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Poruka } from '../models/poruka1';
 import { DatePipe } from '@angular/common';
@@ -13,7 +13,7 @@ import { Poruke } from '../models/poruka';
 })
 
 export class MessagesComponent {
-    constructor(private route: ActivatedRoute, private userService: UserService) { }
+    constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
     poruke: Poruke[] = []
     dataNew: any = {};
     id: number;
@@ -57,6 +57,7 @@ export class MessagesComponent {
             let poruka = resp['poruka']
 
         })
+        this.router.navigate(['/messages']);
 
     }
     zatvori(id) {
