@@ -22,6 +22,8 @@
         style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
         <a href="/homepage">Home</a>
         <a href="/profile">Profile</a>
+        <a href="/messages">Chats</a>
+
         <a href="/about">About</a>
         <a href="#" (click)="logout()">Logout</a>
 
@@ -42,8 +44,6 @@
                     <td><button class="button" *ngIf="user.button && user.conneceted == 1"
                             (click)="connect(user.users[0])">Connect</button>
                     </td>
-                    <td><button class="button" *ngIf="user.conneceted != 1"
-                            (click)="connect(user.users[0])">Message</button></td>
                 </tr>
             </tbody>
         </table>
