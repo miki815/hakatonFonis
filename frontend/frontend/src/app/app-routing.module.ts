@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: "quiz", component: KvizHomepageComponent },
   { path: "connestions", component: ConnestionsComponent },
-  { path: "myconnections", component: MyConnectionsComponent }
+  { path: "myconnections", component: MyConnectionsComponent },
   {path: 'homepage', component: HomepageComponent},
   {path: 'learn', component: LearnComponent},
   {path: 'register', component: RegisterComponent},

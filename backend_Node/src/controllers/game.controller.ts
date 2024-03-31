@@ -15,6 +15,18 @@ export class GameController {
         })
     }
 
+    getWord2 = (req: express.Request, res: express.Response) => {
+        let city = req.body.city;
+        console.log(city);
+        // let id = Math.floor(Math.random() * 4) + 1;
+        Game_words.find({ 'city': city}).then((words) => {
+            console.log(words);
+            res.json(words);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
     updateHits = (req: express.Request, res: express.Response) => {
         let hits = req.body.hits;
         console.log("updating hits");

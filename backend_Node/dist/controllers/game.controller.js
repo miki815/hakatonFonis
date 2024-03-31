@@ -17,6 +17,17 @@ class GameController {
                 console.log(err);
             });
         };
+        this.getWord2 = (req, res) => {
+            let city = req.body.city;
+            console.log(city);
+            // let id = Math.floor(Math.random() * 4) + 1;
+            Game_words_1.default.find({ 'city': city }).then((words) => {
+                console.log(words);
+                res.json(words);
+            }).catch((err) => {
+                console.log(err);
+            });
+        };
         this.updateHits = (req, res) => {
             let hits = req.body.hits;
             console.log("updating hits");

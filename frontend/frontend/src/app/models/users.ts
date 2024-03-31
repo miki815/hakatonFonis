@@ -13,6 +13,8 @@ export class User{
     points: number | undefined;
     age: string | undefined;
     type: string | undefined;    
-
+    language: string | undefined;
+    languages: string[] | undefined;
+    currentCity: string;
 }
 

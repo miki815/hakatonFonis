@@ -8,9 +8,9 @@ export class KvizService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestion(qtype: string) {
+  getQuestion(qtype: string, currentCity) {
     let data = {
-      city: "Belgrade",
+      city: currentCity,
       qtype: qtype
     }
     return this.http.post('http://localhost:4000/kviz/getQuestion', data);

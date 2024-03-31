@@ -14,7 +14,10 @@ let Game_words = new Schema({
     },
     wrong: {
         type: String
-    }
+    },
+    city: {
+        type: String
+    },
 })
 
 export default mongoose.model('Game_words', Game_words, 'game_words');

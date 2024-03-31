@@ -41,9 +41,14 @@ export class GameComponent implements OnInit, OnDestroy {
   counter: number=0;
   hitArr: Hit[];
   hit: Hit;
+  allWords: Game_words[];
+  threeWords: Game_words[];
+  currentIndex: number = 0;
 
   user: User;
   ngOnInit() {
+    this.allWords = new Array();
+    this.threeWords = new Array();
     this.hitArr = new Array();
     this.user = JSON.parse(localStorage.getItem("token"));
     this.bringWords();
@@ -55,6 +60,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.stopGame();
   }
 
+  
   bringWords() {
     this.gameService.bringWords().subscribe((word: Game_words) => {
       if (word) {
@@ -67,6 +73,42 @@ export class GameComponent implements OnInit, OnDestroy {
         alert("Greška");
       }
     });
+  }
+
+  // bringWords() {
+  //   if(this.threeWords.length == 0){
+  //     this.gameService.bringWords2(this.user.currentCity).subscribe((words: Game_words[]) => {
+  //       if (words) {
+  //         this.allWords = words;
+  //         this.getThreeWords();
+  //         this.game_word = this.threeWords[this.currentIndex];
+  //         this.generateAnswers();
+  //         this.startGame();
+  //       } else {
+  //         alert("Greška");
+  //       }
+  //     })
+  //   }
+
+  //   else{
+  //     this.game_word = this.threeWords[++this.currentIndex];
+  //     this.generateAnswers();
+  //     this.startGame();
+  //   }
+  // }
+
+  getThreeWords(){
+    for(let i = 0;i < 3; i++){
+      let index = this.generateRandomIndex(this.allWords);
+      this.threeWords.push(this.allWords[index]);
+      this.allWords.splice(index, 1);
+    }
+  }
+
+  
+  generateRandomIndex(words: Game_words[]): number {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return randomIndex;
   }
 
   goToHomepage() {
@@ -90,10 +132,6 @@ export class GameComponent implements OnInit, OnDestroy {
         const now = Date.now();
         const deltaTime = (now - this.lastFrameTime) / 1000;
         this.lastFrameTime = now;
-
-       
-
-        
 
         this.moveAnswers(deltaTime);
         this.checkCollision();
@@ -129,6 +167,8 @@ export class GameComponent implements OnInit, OnDestroy {
           if (res) {
             console.log('hits updated');
             this.hitArr = new Array();
+            this.allWords = new Array();
+            this.threeWords = new Array();
             this.timerSubscription.unsubscribe();
           }
         });
@@ -146,6 +186,7 @@ export class GameComponent implements OnInit, OnDestroy {
     //this.playercolor = "blueplayercolor";
     this.lanes[0].answers.push({ text: rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: rightAnswer, position: 0 });
     this.lanes[1].answers.push({ text: !rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: !rightAnswer, position: 0 });
+
   }
 
   moveAnswers(deltaTime: number) {
@@ -173,7 +214,7 @@ export class GameComponent implements OnInit, OnDestroy {
               this.hit.language = this.language;
               this.hit.id = this.game_word.id;
 
-              
+
               this.hit.question = this.game_word.question_word;
               this.hit.username = this.user.username;
               this.hitArr.push(this.hit);
