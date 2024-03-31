@@ -4,6 +4,7 @@ import { log } from 'console';
 import MyConnections from '../models/MyConnections';
 import user from '../models/user';
 import Poruka from '../models/Poruka';
+import Rates from '../models/Rates';
 
 
 let id = 0;
@@ -264,4 +265,48 @@ export class UserController {
                 res.status(500).json({ error: 'Došlo je do greške prilikom pretrage poruka.' });
             });
     }
+
+
+    rate = (req: express.Request, res: express.Response) => {
+        const username = req.body.username;
+        const username1 = req.body.username1;
+        const rate = req.body.rate;
+    
+        Rates.findOneAndUpdate(
+            { $and: [{ 'username': username }, { 'who': username1 }] },
+            { $set: { rate: rate } },
+            { new: true, upsert: true } // Opciono: ako želite da kreirate novu ocenu ako ne postoji
+        )
+        .then((updatedRate) => {
+            res.json("Ocena ažurirana.");
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ error: 'Došlo je do greške prilikom ažuriranja ocene.' });
+        });
+    };
+
+    myRate = (req: express.Request, res: express.Response) => {
+        const username = req.body.username;
+
+    
+        Rates.find(
+            { $and: [{ 'username': username }] })
+        .then((updatedRate) => {
+            var rate = 0;
+            var count = 0;
+            updatedRate.forEach(element => {
+                rate += element.rate;
+                count++;
+            });
+            res.json({
+                rate : rate, count : count
+            });
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ error: 'Došlo je do greške prilikom ažuriranja ocene.' });
+        });
+    };
+    
 }
