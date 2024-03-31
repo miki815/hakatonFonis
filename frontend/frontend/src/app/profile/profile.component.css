@@ -69,6 +69,14 @@ a {
 }
 
 .value {
-  flex-grow: 1;
-  text-align: right;
+    flex-grow: 1;
+    text-align: right;
 }
+
+.user-info2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+  }

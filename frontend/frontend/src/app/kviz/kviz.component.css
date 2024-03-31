@@ -46,7 +46,13 @@ a:hover{
     margin-bottom: 20px;
     margin-top: 50px;
 }
-
+.user-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+  }
 .button-row {
     display: flex;
     justify-content: center;

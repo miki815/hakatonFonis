@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
     <div
         style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
         <a href="/homepage">Home</a>
@@ -26,15 +25,23 @@
         <a href="/connestions">Connect</a>
         <a href="/about">About</a>
         <a href="#" (click)="logout()">Logout</a>
-
-    </div>
-    <div class="main-container" style="display: flex; justify-content: center;">
-        <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px; width: 30%;">
-            <button (click)="game()" class="button">Learn basic words and phrases</button>
-            <button (click)="quiz()" class="button">Trivia quiz</button>
-            <button class="button">Connect</button>
+        <div class="user-info">
+            <span>Level: {{ level }}</span>
+            <span style="margin-left: 10px;">Points: {{ user.points }}</span>
         </div>
     </div>
+
+
+<div style="display: flex; justify-content: center; margin-top:5px;"><h3>Currently visiting: {{user.currentCity}}</h3></div>
+<div class="main-container" style="display: flex; justify-content: center;">
+    <div  style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px; width: 30%;">
+        
+        <button (click)="game()" class="button">Learn basic words and phrases</button>
+        <button (click)="quiz()" class="button">Trivia quiz</button>
+        <button class="button">Connect</button>
+        <button class="button">Virtual Assistant</button>
+    </div>
+</div>
 
     <div style="display: flex; justify-content: center;">
         <img src="assets/logo_hak_transparent.png" alt="BridgeTalk Logo" style="margin-top: 50px; width: 300px;">

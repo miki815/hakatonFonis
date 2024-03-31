@@ -14,15 +14,16 @@ export class ProfileComponent {
   constructor(private router: Router, private userService: UserService) { }
   user: User;
 
-
-  ngOnInit() {
-    var token = localStorage.getItem("token");
-    if (token == "null") {
-      this.router.navigate(["login"]);
-    } else {
-      this.user = JSON.parse(token);
+    level: number;
+    ngOnInit(){
+      var token = localStorage.getItem("token");
+      if(token == "null"){
+        this.router.navigate(["login"]);   
+      } else {
+        this.user = JSON.parse(token);
+      }
+      this.level = Math.floor(this.user.points/5)+1;
     }
-  }
 
   submitCity() {
     const citySelect = document.getElementById("citySelect") as HTMLSelectElement;

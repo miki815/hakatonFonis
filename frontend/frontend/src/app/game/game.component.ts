@@ -166,6 +166,8 @@ export class GameComponent implements OnInit, OnDestroy {
         this.gameService.updateHits(this.hitArr).subscribe((res) => {
           if (res) {
             console.log('hits updated');
+            this.user.points+=this.score;
+            localStorage.setItem('token', JSON.stringify(this.user));
             this.hitArr = new Array();
             this.allWords = new Array();
             this.threeWords = new Array();
