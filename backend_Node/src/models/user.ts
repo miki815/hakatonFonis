@@ -1,27 +1,27 @@
 import mongoose from "mongoose";
 
-const Schema= mongoose.Schema;
-let User= new Schema({
-    username:{
+const Schema = mongoose.Schema;
+let User = new Schema({
+    username: {
         type: String
     },
-    name:{
+    name: {
         type: String
-    },surname:{
-        type: String
-    },
-    password:{
+    }, surname: {
         type: String
     },
-    email:{
+    password: {
         type: String
     },
-    telephone:{
-        type: String
-    },country:{
+    email: {
         type: String
     },
-    city:{
+    telephone: {
+        type: String
+    }, country: {
+        type: String
+    },
+    city: {
         type: String
     },
     rate: {
@@ -33,18 +33,21 @@ let User= new Schema({
     visitedCountries: {
         type: Array
     },
-    points:{
+    points: {
         type: Number
     },
-    age:{
+    age: {
         type: Number
     },
-    type:{
+    type: {
         type: String
     },
-    languages:{
+    languages: {
         type: Array
+    },
+    language: {
+        type: String
     }
-    
+
 })
 export default mongoose.model('User', User, 'users')

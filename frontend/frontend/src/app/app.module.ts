@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GameComponent } from './game/game.component';
 import { RegisterComponent } from './register/register.component';
 import { KvizHomepageComponent } from './kviz-homepage/kviz-homepage.component';
+import { ConnestionsComponent } from './connestions/connestions.component';
+import { MyConnectionsComponent } from './my-connections/my-connections.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { KvizHomepageComponent } from './kviz-homepage/kviz-homepage.component';
     GameComponent,
     RegisterComponent,
     KvizHomepageComponent,
+    ConnestionsComponent,
+    MyConnectionsComponent,
   ],
   imports: [
     BrowserModule,

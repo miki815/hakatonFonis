@@ -48,6 +48,9 @@ let User = new Schema({
     },
     languages: {
         type: Array
+    },
+    language: {
+        type: String
     }
 });
 exports.default = mongoose_1.default.model('User', User, 'users');
