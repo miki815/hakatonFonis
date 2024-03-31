@@ -1,5 +1,7 @@
 import * as express from 'express';
 import Game_words from '../models/Game_words';
+import Hit from '../models/Hit';
+import { log } from 'console';
 
 
 export class GameController {
@@ -11,5 +13,35 @@ export class GameController {
         }).catch((err)=>{
             console.log(err);
         })
+    }
+
+    updateHits = (req: express.Request, res: express.Response) => {
+        let hits = req.body.hits;
+        console.log("updating hits");
+        for(let i = 0;  i<hits.length;i++){
+            let hit = new Hit(hits[i]);
+            
+            ////////
+            Hit.findOne({'username': hit.username, 'hit_word': hit.hit_word})
+            .then(oldhit => {
+                if(oldhit) {
+                    if(i == hits.length - 1){
+                        log("Completed");
+                        res.status(200).json({'message': '0'});
+                    }
+                }
+                else{
+                    hit.save().then(() => {
+                        if(i == hits.length - 1){
+                            log("Completed");
+                            res.status(200).json({'message': '0'});
+                        }
+                            //   res.status(200).json({'message': '0'});
+                        }).catch((err) => {
+                        log("Error saving user:", err);
+                            //    res.status(400).json({'message': '-1'});
+                    });
+                }})
+        }
     }
 }

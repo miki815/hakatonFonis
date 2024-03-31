@@ -5,6 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GameController = void 0;
 const Game_words_1 = __importDefault(require("../models/Game_words"));
+const Hit_1 = __importDefault(require("../models/Hit"));
+const console_1 = require("console");
 class GameController {
     constructor() {
         this.getWord = (req, res) => {
@@ -14,6 +16,35 @@ class GameController {
             }).catch((err) => {
                 console.log(err);
             });
+        };
+        this.updateHits = (req, res) => {
+            let hits = req.body.hits;
+            console.log("updating hits");
+            for (let i = 0; i < hits.length; i++) {
+                let hit = new Hit_1.default(hits[i]);
+                ////////
+                Hit_1.default.findOne({ 'username': hit.username, 'hit_word': hit.hit_word })
+                    .then(oldhit => {
+                    if (oldhit) {
+                        if (i == hits.length - 1) {
+                            (0, console_1.log)("Completed");
+                            res.status(200).json({ 'message': '0' });
+                        }
+                    }
+                    else {
+                        hit.save().then(() => {
+                            if (i == hits.length - 1) {
+                                (0, console_1.log)("Completed");
+                                res.status(200).json({ 'message': '0' });
+                            }
+                            //   res.status(200).json({'message': '0'});
+                        }).catch((err) => {
+                            (0, console_1.log)("Error saving user:", err);
+                            //    res.status(400).json({'message': '-1'});
+                        });
+                    }
+                });
+            }
         };
     }
 }

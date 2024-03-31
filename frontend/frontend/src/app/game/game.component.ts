@@ -5,6 +5,7 @@ import { Subscription, interval } from 'rxjs';
 import { Router } from '@angular/router';
 import { KvizService } from '../services/kviz.service';
 import { User } from '../models/users';
+import { Hit } from '../models/hit';
 
 interface Answer {
   text: string;
@@ -36,12 +37,14 @@ export class GameComponent implements OnInit, OnDestroy {
   timerSubscription: Subscription;
   isPreparing: boolean = false;
   gameOver: boolean = false;
-
+  language: string;
   counter: number=0;
+  hitArr: Hit[];
+  hit: Hit;
 
-  hit : [];
   user: User;
   ngOnInit() {
+    this.hitArr = new Array();
     this.user = JSON.parse(localStorage.getItem("token"));
     this.bringWords();
     this.startTimer();
@@ -56,7 +59,9 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameService.bringWords().subscribe((word: Game_words) => {
       if (word) {
         this.game_word = word;
+        this.generateAnswers();
         this.startGame();
+        
         
       } else {
         alert("Greška");
@@ -86,9 +91,9 @@ export class GameComponent implements OnInit, OnDestroy {
         const deltaTime = (now - this.lastFrameTime) / 1000;
         this.lastFrameTime = now;
 
-        if (this.lanes[0].answers.length === 0 && this.lanes[1].answers.length === 0) {
-          this.generateAnswers();
-        }
+       
+
+        
 
         this.moveAnswers(deltaTime);
         this.checkCollision();
@@ -120,7 +125,13 @@ export class GameComponent implements OnInit, OnDestroy {
     this.kvizService.saveScore2(this.user.username, this.score).subscribe((res) => {
       if (res) {
         console.log('Score saved')
-        this.timerSubscription.unsubscribe();
+        this.gameService.updateHits(this.hitArr).subscribe((res) => {
+          if (res) {
+            console.log('hits updated');
+            this.hitArr = new Array();
+            this.timerSubscription.unsubscribe();
+          }
+        });
       }
     });
     /*this.gameService.saveScore(this.username, this.score).subscribe(()=>{
@@ -132,7 +143,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   generateAnswers() {
     const rightAnswer = Math.random() < 0.5;
-    this.playercolor = "blueplayercolor";
+    //this.playercolor = "blueplayercolor";
     this.lanes[0].answers.push({ text: rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: rightAnswer, position: 0 });
     this.lanes[1].answers.push({ text: !rightAnswer ? this.game_word.right : this.game_word.wrong, isRight: !rightAnswer, position: 0 });
   }
@@ -150,10 +161,24 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!this.gameOver) {
       this.lanes.forEach((lane, index) => {
         lane.answers = lane.answers.filter(answer => {
+          if(answer.position>=1 && index === this.player){
+              this.playercolor = "blueplayercolor";
+
+          }
           if (answer.position >= 9 && answer.position < 9.1 && index === this.player) {
             if (answer.isRight) {
               this.score++;
-              /*this.hit.push() // */
+              this.hit = new Hit();
+              this.hit.hit_word = this.game_word.right;
+              this.hit.language = this.language;
+              this.hit.id = this.game_word.id;
+
+              
+              this.hit.question = this.game_word.question_word;
+              this.hit.username = this.user.username;
+              this.hitArr.push(this.hit);
+              
+
               this.playercolor = "greenplayercolor";
               this.bringWords();
             } else {
