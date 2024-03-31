@@ -20,6 +20,8 @@
             style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
             <a href="/homepage">Home</a>
             <a href="/profile">Profile</a>
+            <a href="/messages">Chats</a>
+
             <a href="/about">About</a>
             <a href="#" (click)="logout()">Logout</a>
 
@@ -65,7 +67,8 @@
                                             <tr>
                                                 <td>
                                                     <div *ngIf=" p1.from == p.korisnickoIme2">
-                                                        <b>{{p.korisnickoIme2}}</b></div>
+                                                        <b>{{p.korisnickoIme2}}</b>
+                                                    </div>
                                                     <div *ngIf=" p1.from == p.korisnickoIme1">
                                                         <b>{{p.korisnickoIme1}}</b>
                                                     </div>
