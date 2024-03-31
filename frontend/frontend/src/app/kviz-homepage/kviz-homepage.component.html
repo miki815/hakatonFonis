@@ -20,7 +20,10 @@
     <a href="/profile">Profile</a>
     <a href="/about">About</a>
     <a href="#" (click)="logout()">Logout</a>
-      
+    <div class="user-info">
+        <span>Level: {{ level }}</span>
+        <span style="margin-left: 10px;">Points: {{ user.points }}</span>
+    </div>
 </div>
 <div class="main-container" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
     <h2 style="text-align: center; color: #433E49; font-size: 28px; margin-bottom: 0px; margin-top: 20px;">Choose a topic</h2>

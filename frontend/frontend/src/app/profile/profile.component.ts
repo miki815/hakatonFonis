@@ -14,7 +14,7 @@ export class ProfileComponent {
     constructor(private router: Router, private userService: UserService) { }
     user: User;
 
-
+    level: number;
     ngOnInit(){
       var token = localStorage.getItem("token");
       if(token == "null"){
@@ -22,6 +22,7 @@ export class ProfileComponent {
       } else {
         this.user = JSON.parse(token);
       }
+      this.level = Math.floor(this.user.points/5)+1;
     }
 
     submitCity(){
@@ -30,8 +31,11 @@ export class ProfileComponent {
       this.userService.updateCurrentCity(this.user.username, selectedCity).subscribe((res: any)=>{
         if(res){
           console.log("city updated");
+          this.user.currentCity=selectedCity;
+            localStorage.setItem('token', JSON.stringify(this.user));
         } 
       });
+
       this.user.currentCity = selectedCity;
     }
 

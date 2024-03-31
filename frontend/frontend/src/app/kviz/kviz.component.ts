@@ -27,12 +27,14 @@ export class KvizComponent {
   city: string = "Belgrade, Serbia";
   points: number = 0;
   user: User;
-
+  level: number;
+  
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("token"));
     console.log(this.user);
     let qtype = sessionStorage.getItem("question_type");
     this.getAllQuestions(qtype);
+    this.level = Math.floor(this.user.points/5)+1;
   }
 
   getAllQuestions(qtype: string) {

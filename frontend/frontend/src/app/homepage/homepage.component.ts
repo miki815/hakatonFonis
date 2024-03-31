@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../models/users';
 
 @Component({
   selector: 'app-homepage',
@@ -11,11 +12,18 @@ import { Router } from '@angular/router';
 export class HomepageComponent {
 
   constructor(private router: Router) {}
+  user: User;
+  level: number;
 
   ngOnInit(){
+
     var token = localStorage.getItem("token");
-    if(token == "null"){
-      this.router.navigate(["login"]);    }
+      if(token == "null"){
+        this.router.navigate(["login"]);   
+      } else {
+        this.user = JSON.parse(token);
+      }
+     this.level = Math.floor(this.user.points/5)+1;
   }
   game() {
     this.router.navigate(['../game']);

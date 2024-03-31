@@ -20,7 +20,10 @@
         <a href="/profile">Profile</a>
         <a href="/about">About</a>
         <a href="#" (click)="logout()">Logout</a>
-        
+        <div class="user-info">
+            <span>Level: {{ level }}</span>
+            <span style="margin-left: 10px;">Points: {{ user.points }}</span>
+        </div>
     </div>
     
     
