@@ -194,7 +194,7 @@ export class GameComponent implements OnInit, OnDestroy {
       lane.answers.forEach(answer => {
         answer.position += this.speed_multiplier * deltaTime * 60;
       });
-      lane.answers = lane.answers.filter(answer => answer.position < 10);
+      lane.answers = lane.answers.filter(answer => answer.position < 9.1);
     });
   }
 
@@ -204,7 +204,6 @@ export class GameComponent implements OnInit, OnDestroy {
         lane.answers = lane.answers.filter(answer => {
           if(answer.position>=1 && index === this.player){
               this.playercolor = "blueplayercolor";
-
           }
           if (answer.position >= 9 && answer.position < 9.1 && index === this.player) {
             if (answer.isRight) {
