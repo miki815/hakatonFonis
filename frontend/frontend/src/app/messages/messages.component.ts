@@ -55,6 +55,7 @@ export class MessagesComponent {
         }
         this.userService.posaljiPoruku(nova, this.korisnickoIme, k1).subscribe((resp) => {
             let poruka = resp['poruka']
+            alert("Poruka poslata!");
 
         })
         this.router.navigate(['/messages']);

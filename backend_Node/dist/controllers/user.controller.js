@@ -8,6 +8,7 @@ const user_1 = __importDefault(require("../models/user"));
 const console_1 = require("console");
 const MyConnections_1 = __importDefault(require("../models/MyConnections"));
 const Poruka_1 = __importDefault(require("../models/Poruka"));
+const Rates_1 = __importDefault(require("../models/Rates"));
 let id = 0;
 let idDog = 0;
 class UserController {
@@ -244,6 +245,39 @@ class UserController {
             }).catch((err) => {
                 console.error(err);
                 res.status(500).json({ error: 'Došlo je do greške prilikom pretrage poruka.' });
+            });
+        };
+        this.rate = (req, res) => {
+            const username = req.body.username;
+            const username1 = req.body.username1;
+            const rate = req.body.rate;
+            Rates_1.default.findOneAndUpdate({ $and: [{ 'username': username }, { 'who': username1 }] }, { $set: { rate: rate } }, { new: true, upsert: true } // Opciono: ako želite da kreirate novu ocenu ako ne postoji
+            )
+                .then((updatedRate) => {
+                res.json("Ocena ažurirana.");
+            })
+                .catch((err) => {
+                console.error(err);
+                res.status(500).json({ error: 'Došlo je do greške prilikom ažuriranja ocene.' });
+            });
+        };
+        this.myRate = (req, res) => {
+            const username = req.body.username;
+            Rates_1.default.find({ $and: [{ 'username': username }] })
+                .then((updatedRate) => {
+                var rate = 0;
+                var count = 0;
+                updatedRate.forEach(element => {
+                    rate += element.rate;
+                    count++;
+                });
+                res.json({
+                    rate: rate, count: count
+                });
+            })
+                .catch((err) => {
+                console.error(err);
+                res.status(500).json({ error: 'Došlo je do greške prilikom ažuriranja ocene.' });
             });
         };
     }

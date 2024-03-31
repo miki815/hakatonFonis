@@ -96,3 +96,21 @@ a {
     text-decoration: none;
     font-size: 20px;
 }
+
+
+
+
+.button1 {
+    border: none;
+    background-color: lightblue;
+    color: #433E49;
+    padding: 10px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.button1:hover {
+    background-color: #433E49;
+    color: lightblue;
+}

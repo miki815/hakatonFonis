@@ -12,6 +12,7 @@ import { Connection } from '../models/Connection';
 export class MyConnectionsComponent {
   users: Connection[] = [];
 
+  sliderValue: number = 1;
 
 
   constructor(private userService: UserService, private router: Router) { }
@@ -42,6 +43,13 @@ export class MyConnectionsComponent {
 
   logout() {
     localStorage.setItem("token", null);
+  }
+
+  rate(r, username) {
+    var user = JSON.parse(localStorage.getItem('token') || '{}');
+    this.userService.rate(username, user.username, r).subscribe((res) => {
+      alert("You have rated this user!");
+    });
   }
 
 }
