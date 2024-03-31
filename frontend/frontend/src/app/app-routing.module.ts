@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MessagesComponent } from './messages/messages.component';
 import { CommonModule } from '@angular/common';
+import { LearnedWordsComponent } from './learned-words/learned-words.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: "about", component: AboutComponent },
   { path: "profile", component: ProfileComponent },
   { path: "messages", component: MessagesComponent },
+  { path: "hit", component: LearnedWordsComponent },
+
 
 ];
 

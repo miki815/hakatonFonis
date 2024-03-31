@@ -26,4 +26,11 @@ export class GameService {
     }
     return this.http.post('http://localhost:4000/game/updateHits', data);
   }
+
+  getHits(username){
+    const data={
+      username: username
+    }
+    return this.http.post('http://localhost:4000/game/getHits', data);
+  }
 }
