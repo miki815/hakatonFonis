@@ -120,6 +120,8 @@ export class GameComponent implements OnInit, OnDestroy {
     this.kvizService.saveScore2(this.user.username, this.score).subscribe((res) => {
       if (res) {
         console.log('Score saved')
+        this.user.points+=this.score;
+        localStorage.setItem('token', JSON.stringify(this.user));
         this.timerSubscription.unsubscribe();
       }
     });

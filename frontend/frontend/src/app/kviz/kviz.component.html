@@ -1,49 +1,66 @@
-<nav class="navbar">
-    <ul class="navbar-nav">
-        <li class="nav-item-left">
-            <a href="./homepage" class="nav-link">Početna</a>
-        </li>
-        <li class="nav-item-left">
-            <a href="./pitanja" class="nav-link">Nova igra</a>
-        </li>
-        <li class="nav-item-right">
-            <a href="./" class="nav-link">Odjavi se</a>
-        </li>
-    </ul>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
-<div class="container">
-
-    <div class="timpoints">
-        <span class="timer">{{timer}}</span>
-        <span class="points">{{points}}</span>
-
+    <title>Login</title>
+    <style>
+          body{
+            background-color: lightblue  ;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-around;  background-color: #433E49  ; padding: 20px; color: lightblue;">
+        <a href="/homepage">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/about">About</a>
+        <a href="#" (click)="logout()">Logout</a>
+        
     </div>
-    <h1 class="game-title">EDUKACIJA</h1>
-    <p class="game-title">{{message}}</p>
-    <p class="game-title">{{city}}</p>
+    
+    
+    <div class="container">
+            <div class="timer">{{timer}}</div>
 
-    <textarea class="question-container question-text" rows="4" readonly>{{question.text}}</textarea>
-
-    <div class="answer-container">
-        <div class="button-row">
-            <button [id]="btnClass[0]" (click)="answerQuestion(1)"
-                [disabled]="btnDisabled">{{question.answer1}}</button>
-            <button [id]="btnClass[1]" (click)="answerQuestion(2)"
-                [disabled]="btnDisabled">{{question.answer2}}</button>
+        <div class="timpoints">
+            <div class="points">{{points}}</div>
+            
         </div>
+        
 
-        <div class="button-row">
-            <button [id]="btnClass[2]" (click)="answerQuestion(3)"
-                [disabled]="btnDisabled">{{question.answer3}}</button>
-            <button [id]="btnClass[3]" (click)="answerQuestion(4)"
-                [disabled]="btnDisabled">{{question.answer4}}</button>
+        <p class="game-title">{{message}}</p>
+        <p class="game-title">{{city}}</p>
+    
+        <textarea class="question-container question-text" rows="4" readonly>{{question.text}}</textarea>
+    
+        <div class="answer-container">
+            <div class="button-row">
+                <button [id]="btnClass[0]" (click)="answerQuestion(1)"
+                    [disabled]="btnDisabled">{{question.answer1}}</button>
+                <button [id]="btnClass[1]" (click)="answerQuestion(2)"
+                    [disabled]="btnDisabled">{{question.answer2}}</button>
+            </div>
+    
+            <div class="button-row">
+                <button [id]="btnClass[2]" (click)="answerQuestion(3)"
+                    [disabled]="btnDisabled">{{question.answer3}}</button>
+                <button [id]="btnClass[3]" (click)="answerQuestion(4)"
+                    [disabled]="btnDisabled">{{question.answer4}}</button>
+            </div>
+    
+            <div class="button-row">
+                <button id="dalje-btn" (click)="answerQuestion(0)" [disabled]="btnDisabled">Dalje</button>
+            </div>
         </div>
-
-        <div class="button-row">
-            <button id="dalje-btn" (click)="answerQuestion(0)" [disabled]="btnDisabled">Dalje</button>
-        </div>
+    
     </div>
+    <footer style="background-color: #433E49 ; color: white   ; text-align: center; padding: 10px;  width: 100%; margin-top: 200px;">
+        <p><b>Email</b>: bridgetalk&#64;gmail.com</p>
+    </footer>
+</body>
 
-</div>

@@ -23,8 +23,8 @@ export class KvizComponent {
   isPreparing: boolean = false;
   questionCnt: number = 0;
   correctCnt: number = 0;
-  message: string = "Find out how well you know the city you're traveling to!";
-  city: string = "Belgrade";
+  message: string = "Test your knowledge";
+  city: string = "Belgrade, Serbia";
   points: number = 0;
   user: User;
 
@@ -84,11 +84,13 @@ export class KvizComponent {
       this.points -= 1;
     }
     if (this.questionCnt++ == 4) {
-      this.message = "Igra je završena! Tačnih odgovora: " + this.correctCnt.toString();
+      this.message = "Game over! Final score: " + this.correctCnt.toString();
       this.timer = 0;
       this.kvizService.saveScore2(this.user.username, this.points).subscribe((res) => {
         if (res) {
           console.log('Score saved')
+          this.user.points+=this.points;
+          localStorage.setItem('token', JSON.stringify(this.user));
           this.timerSubscription.unsubscribe();
         }
       });
@@ -124,6 +126,10 @@ export class KvizComponent {
     this.timer = 10;
     this.btnDisabled = false;
     for (let i = 0; i < 4; i++) this.btnClass[i] = '';
+  }
+
+  logout(){
+    localStorage.setItem("token", null);
   }
 
 }
