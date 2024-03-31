@@ -33,7 +33,7 @@ export class HomepageComponent {
   }
 
   connect() {
-    this.router.navigate(['connestions']);
+    this.router.navigate(['../connestions']);
   }
   logout() {
     localStorage.setItem("token", null);
